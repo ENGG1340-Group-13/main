@@ -1,0 +1,13 @@
+{
+    "makefile.makefilePath": "/Users/guoxinyi/Desktop/郭欣怡/大一/ENGG1340/c++/Guo Jia",
+    "makefile.launchConfigurations": [
+        {
+            "cwd": "/Users/guoxinyi/Desktop/郭欣怡/大一/ENGG1340/c++/Guo Jia",
+            "binaryPath": "/Users/guoxinyi/Desktop/郭欣怡/大一/ENGG1340/c++/Guo Jia/main",
+            "binaryArgs": []
+        }
+    ],
+    "files.associations": {
+        "ostream": "cpp"
+    }
+}

@@ -6,7 +6,10 @@
 #include <string>
 using namespace std;
 
-//The following is the fragments
+//The following is the main function declaration that will be used in the main.cpp
+void main3();
+
+//The followings are the fragments
 //A
 string p1 = "  *\n **\n***\n";
 //B
@@ -31,7 +34,7 @@ string blue = "\033[34m";
 string green = "\033[32m";
 string clre = "\033[0m";
 
-//The following is the answers
+//The following are the answers
 //Answer to L1.gi1
 string a1 = yellow + "  * *  \n ** ** \n*** ***\n\n" + L1_r + L1_r + clre;
 //Answer to L1.gi2

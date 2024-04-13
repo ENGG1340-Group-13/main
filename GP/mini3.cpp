@@ -1,5 +1,5 @@
 #include <iostream>
-#include "mini3-factors.h"
+#include "mini3.h"
 #include <unistd.h>
 #include <cstdlib>
 #include <ctime>

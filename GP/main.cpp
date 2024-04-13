@@ -1,4 +1,5 @@
 #include "include.h"
+#include "mini3.h"
 
 int main()
 {
@@ -19,9 +20,9 @@ void checkPosition(Position * newPosition, Level * level)
             playerMove(newPosition, level->player, level->tiles);
             break;
         /*case 'X':
-        case 'G':
+        case 'G':*/
         case 'T':
-            combat(level->player, getMonsterAt(newPosition, level->monsters), 1);*/
+            mini3();
         default:
             break;
     }

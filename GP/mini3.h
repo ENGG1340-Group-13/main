@@ -7,7 +7,7 @@
 using namespace std;
 
 //The following is the main function declaration that will be used in the main.cpp
-void main3();
+void mini3();
 
 //The followings are the fragments
 //A

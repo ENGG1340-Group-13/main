@@ -90,7 +90,7 @@ int Maze::move_warrior(int keyvalue){
     int tmpresult=0;
     //判断沿箭头的方向是否可移动
     switch(keyvalue){
-        case KEY_UP:
+        case KEY_up:
             if(mymap.mem_map[my-1][mx]==' '){//移动方向的下一步是空格
                 updatechar(x,y,' '); 
                 y--;
@@ -110,7 +110,7 @@ int Maze::move_warrior(int keyvalue){
                 tmpresult=4;//走出迷宫 
             }               
             break;
-        case KEY_DOWN:
+        case KEY_down:
             if(mymap.mem_map[my+1][mx]==' '){//移动方向的下一步是空格
                 updatechar(x,y,' '); 
                 y++;
@@ -130,7 +130,7 @@ int Maze::move_warrior(int keyvalue){
                 tmpresult=4;//走出迷宫 
             }
             break;
-        case KEY_LEFT:
+        case KEY_left:
             if(mymap.mem_map[my][mx-1]==' '){//移动方向的下一步是空格
                 updatechar(x,y,' '); 
                 x--;
@@ -150,7 +150,7 @@ int Maze::move_warrior(int keyvalue){
                 tmpresult=4;//走出迷宫 
             }
             break;
-        case KEY_RIGHT:
+        case KEY_right:
             if(mymap.mem_map[my][mx+1]==' '){//移动方向的下一步是空格
                 updatechar(x,y,' '); 
                 x++;
@@ -248,11 +248,11 @@ void Maze::maze_begin(){
     while(true){
         //根据键盘输入移动“勇士”或退出读键盘的循环 
         keyinput=keyboard.read_key();
-        if (keyinput==KEY_UP|keyinput==KEY_DOWN|keyinput==KEY_LEFT|keyinput==KEY_RIGHT){
+        if (keyinput==KEY_up|keyinput==KEY_down|keyinput==KEY_left|keyinput==KEY_right){
             int tmp=move_warrior(keyinput);
             if(tmp==3||tmp==4)
                 quit=1;
-        }else if(keyinput==KEY_Q){
+        }else if(keyinput==KEY_q){
             quit=1;
         }
         //如果障碍物速度的控制值降到 0，就移动一次所有的障碍物 

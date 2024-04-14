@@ -5,14 +5,14 @@
 
 using namespace std;
 
-#define KEY_UP 'A'
-#define KEY_DOWN 'B'
-#define KEY_LEFT 'D'
-#define KEY_RIGHT 'C'
+#define KEY_up 'A'
+#define KEY_down 'B'
+#define KEY_left 'D'
+#define KEY_right 'C'
 #define KEY_SPACE 32
-#define KEY_ENTER '\n'
-#define KEY_ESC '\033'
-#define KEY_Q 'q'
+#define KEY_enter '\n'
+#define KEY_esc '\033'
+#define KEY_q 'q'
  
 class KeyboardWin
 {

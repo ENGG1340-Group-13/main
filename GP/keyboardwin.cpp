@@ -18,17 +18,17 @@ void KeyboardWin::get_key() {
         if (tmp == '\033'){    //表示读取的是功能键或者方向键，丢掉第一个返回值，读取第二个返回值   
             getchar(); // 忽略第二个字符 '[' 
             switch (tmp2 = getchar()){   //接収功能键返回值          
-                case KEY_UP://上 
-                    this->in=KEY_UP;
+                case KEY_up://上 
+                    this->in=KEY_up;
                     break;
-                case KEY_DOWN://下 
-                    this->in=KEY_DOWN;
+                case KEY_down://下 
+                    this->in=KEY_down;
                     break;  
-                case KEY_LEFT://左
-                    this->in=KEY_LEFT;
+                case KEY_left://左
+                    this->in=KEY_left;
                     break;
-                case KEY_RIGHT://右
-                    this->in=KEY_RIGHT;
+                case KEY_right://右
+                    this->in=KEY_right;
                     break;
                 default:
                     this->in=0; 
@@ -39,11 +39,11 @@ void KeyboardWin::get_key() {
                 case KEY_SPACE://空格
                     this->in=KEY_SPACE;                 
                     break;
-                case KEY_ENTER://Enter
-                    this->in=KEY_ENTER;
+                case KEY_enter://Enter
+                    this->in=KEY_enter;
                     break;
-                case KEY_Q://Esc
-                    this->in=KEY_Q;
+                case KEY_q://Esc
+                    this->in=KEY_q;
                     break;
                 default: 
                     this->in=0;

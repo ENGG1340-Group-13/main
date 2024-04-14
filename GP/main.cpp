@@ -1,4 +1,5 @@
 #include "include.h"
+#include "maze.h"
 
 int main()
 {
@@ -14,13 +15,21 @@ void checkPosition(Position * newPosition, Level * level)
     switch (mvinch(newPosition->y, newPosition->x))
     {
         case '.':
+            break;
         case '#':
+            break;
         case '+':
             playerMove(newPosition, level->player, level->tiles);
             break;
-        /*case 'X':
+        //case 'X':
         case 'G':
-        case 'T':
+        {
+            Maze mymaze;
+	        mymaze.maze_init();
+	        mymaze.maze_begin();
+            break;
+        }
+        /*case 'T':
             combat(level->player, getMonsterAt(newPosition, level->monsters), 1);*/
         default:
             break;
@@ -387,7 +396,7 @@ char ** saveLevelPositions()
         positions[y] = (char *)malloc(sizeof(char) * 100);
         for (x = 0; x < MAX_WIDTH; x++)
         {
-            positions[y][x] = mvinch(y, x);
+            positions[y][x] = mvinch(y, x) & A_CHARTEXT;
         }
     }
     return positions;
@@ -439,7 +448,7 @@ Monster * selectMonster(int room)
         case 2:
         	return createMonster('T', 15, 5, 1);
         default:
-        	break;
+        	return nullptr;
     }
 }
 
@@ -455,7 +464,7 @@ Monster * createMonster(char symbol, int health, int attack,int pathfinding)
     newMonster->pathfinding = pathfinding;
     newMonster->alive = 1;
 
-    sprintf(newMonster->string, "%c", symbol);
+    snprintf(newMonster->string, sizeof(newMonster->string),"%c", symbol);
 
     newMonster->position = (Position*)malloc(sizeof(Position));
 
@@ -616,7 +625,7 @@ void addPositionYX(int ** frontier, int frontierCount, int y, int x)
 
 int check_Position(int y, int x)
 {
-    char temp = mvinch(y, x);
+    char temp = mvinch(y, x) & A_CHARTEXT;
 
     if (temp == '.' || temp == '|' || temp == '-')
         return 0;

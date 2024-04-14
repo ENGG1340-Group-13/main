@@ -1,9 +1,10 @@
 {
-    "makefile.makefilePath": "/Users/guoxinyi/Desktop/郭欣怡/大一/ENGG1340/c++/Guo Jia",
+    "makefile.makefilePath": "/Users/guoxinyi/Desktop/郭欣怡/大一/ENGG1340/c++/Guo Jia/GP/Makefile",
+    "makefile.makeDirectory": "/Users/guoxinyi/Desktop/郭欣怡/大一/ENGG1340/c++/Guo Jia/GP",
     "makefile.launchConfigurations": [
         {
-            "cwd": "/Users/guoxinyi/Desktop/郭欣怡/大一/ENGG1340/c++/Guo Jia",
-            "binaryPath": "/Users/guoxinyi/Desktop/郭欣怡/大一/ENGG1340/c++/Guo Jia/main",
+            "cwd": "/Users/guoxinyi/Desktop/郭欣怡/大一/ENGG1340/c++/Guo Jia/GP",
+            "binaryPath": "/Users/guoxinyi/Desktop/郭欣怡/大一/ENGG1340/c++/Guo Jia/GP",
             "binaryArgs": []
         }
     ],

@@ -23,6 +23,7 @@ void checkPosition(Position * newPosition, Level * level)
         case 'G':*/
         case 'T':
             mini3();
+	    break;
         default:
             break;
     }

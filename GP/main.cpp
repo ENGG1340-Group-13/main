@@ -5,7 +5,6 @@ int main()
 {
 	screenSetUp();
   	menuLoop();
-
 	endwin();
 	return 0;
 }
@@ -15,9 +14,7 @@ void checkPosition(Position * newPosition, Level * level)
     switch (mvinch(newPosition->y, newPosition->x))
     {
         case '.':
-            break;
         case '#':
-            break;
         case '+':
             playerMove(newPosition, level->player, level->tiles);
             break;

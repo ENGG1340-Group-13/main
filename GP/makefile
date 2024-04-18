@@ -21,7 +21,7 @@ main: main.o maze.o keyboardwin.o screenwin.o
 	g++ -I ./local/include -I ./local/include/ncursestw -L ./local/lib -o $@ $^ -lncursestw -ldl -pthread
 
 start:
-    TERMINFO=/lib/terminfo
+	TERMINFO = /lib/terminfo
 	./main
 .PHONY: start
 

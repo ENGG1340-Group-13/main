@@ -9,6 +9,7 @@ int main()
 	return 0;
 }
 
+//check the validity of the player move
 void checkPosition(Position * newPosition, Level * level)
 {
     switch (mvinch(newPosition->y, newPosition->x))
@@ -33,6 +34,7 @@ void checkPosition(Position * newPosition, Level * level)
     }
 }
 
+// set up screen parameters
 void screenSetUp()
 {
 	initscr();
@@ -41,8 +43,11 @@ void screenSetUp()
 	keypad(stdscr, true);
 	refresh();
 
+    bkgd(COLOR_PAIR(5));
+    start_color();
+    init_pair(5, COLOR_WHITE, COLOR_WHITE);
 
-	start_color();
+
     init_pair(0, COLOR_RED, COLOR_BLACK);
     init_pair(1, COLOR_GREEN, COLOR_BLACK);
     init_pair(2, COLOR_YELLOW, COLOR_BLACK);
@@ -80,14 +85,16 @@ void screenSetUp()
 	return;
 }
 
+//print game introduction
 void print_intro()
 {
-	WINDOW * menuwin = newwin(20,90,5,5);
+	clear();
+    WINDOW * introwin = newwin(20,90,5,5);
 	refresh();
 
-	box(menuwin, 0, 0);
-	wrefresh(menuwin);
-	keypad(menuwin,true);
+	box(introwin, 0, 0);
+	wrefresh(introwin);
+	keypad(introwin,true);
 
 	ifstream fin;
 	fin.open("introduction.txt");
@@ -96,68 +103,83 @@ void print_intro()
 	int i = 1;
 	while(getline(fin,line))
 	{
-		mvwprintw(menuwin, i, 1, line.c_str());
-		wrefresh(menuwin);
+		mvwprintw(introwin, i, 1, line.c_str());
+		wrefresh(introwin);
 		napms(1000);
 		i++;
 	}
 	napms(1000);
-	mvwprintw(menuwin, i, 25, "Please press ENTER to return to menu...");
-	wrefresh(menuwin);
+	mvwprintw(introwin, i, 25, "Please press ENTER to return to menu...");
+	wrefresh(introwin);
+    fin.close();
 	
 	int choice = '\0';
 	while (true)
 	{
-		choice = wgetch(menuwin);
+		choice = wgetch(introwin);
 		if (choice == 10)
 		{
-			fin.close();
+            clear();
+            refresh();
 			return;
 		}	
-	}
+    }
 }
 
+//main menuloop
 void menuLoop()
 {
-	int choice;
+	int choice = 4;
 	Game game;
 	game.currentLevel = 0;
 
 	while(true)
 	{
-		choice = mainMenu();
-
 		switch(choice)
 		{
-			case 0:
+			case 0: // print introduction
 				print_intro();
-				clear();
 				break;
-			case 1:
-				gameLoop(&game);
+			case 1: // start a new game
+				game.currentLevel = -1;
+                gameLoop(&game);
 				break;
-			case 2:
+			case 2: //continue the current game
+                gameLoop(&game);
+                break;
+            case 3: // end game
 				endGame();
-				return;
+                return;
+            case 4:
+                gameLoop(&game);
+                break;
 		}
+        choice = mainMenu();
 	}
 }
 
+//main gameloop
 void gameLoop(Game * game)
 {
-	timeout(100);
+    clear();
+    refresh();
+    timeout(200);
 	int ch = '\0';
 	Position * newPosition;
 	Level * level;
 
 	if (game->currentLevel == 0)
     {
-        game->levels[game->currentLevel] = createLevel(1);
+        game->levels[0] = createLevel(1);
         game->currentLevel++;
     }
-    level = game->levels[game->currentLevel - 1];
-
-
+    if (game->currentLevel == -1)
+    {
+        free(game->levels[0]);
+        game->levels[0] = createLevel(1);
+        game->currentLevel = 1;
+    }
+    level = game->levels[0];
 
 	while (ch != 'q')
 	{
@@ -174,8 +196,11 @@ void gameLoop(Game * game)
 		}
 		ch = getch();
 	}
+    clear();
+    refresh();
 }
 
+//print the mainMenu
 int mainMenu() 
 {
 	WINDOW * menuwin = newwin(20,20,5,40);
@@ -185,14 +210,14 @@ int mainMenu()
 	wrefresh(menuwin);
 	keypad(menuwin,true);
 
-	string choices[3] = {"Introduction", "Play",  "End Game"};
+	string choices[4] = {"Introduction", "New Game", "Continue Game", "End Game"};
 	int choice;
 	int highlight = 0;
 
 	while(true)
 	{
 		mvwprintw(menuwin, 1, 7, "Menu");
-		for(int i = 0; i < 3; i++)
+		for(int i = 0; i < 4; i++)
 		{
 			if(i == highlight)
 			wattron(menuwin, A_REVERSE);
@@ -210,16 +235,22 @@ int mainMenu()
 				break;
 			case KEY_DOWN:
 				highlight++;
-				if(highlight == 3)
-					highlight = 2;
+				if(highlight == 4)
+					highlight = 3;
 				break;
 			default:
 				break;
 		}
 		if(choice == 10)
-			return highlight;			
+        {
+            wclear(menuwin);
+            refresh();
+            return highlight;
+        }		
 	}
 }
+
+//function to end game
 void endGame()
 {
     start_color();
@@ -244,6 +275,7 @@ void endGame()
     return;
 }
 
+// print the game hub
 void printGameHub(Level * level)
 {
     mvprintw(1, 105, "Level: %d", level->level);
@@ -252,6 +284,7 @@ void printGameHub(Level * level)
     mvprintw(7, 105,"Exp: %d", level->player->exp);
 }
 
+//create the profile of the level, including rooms, players, monsters, and tiles
 Level * createLevel(int level)
 {
 	Level * newLevel;
@@ -271,6 +304,7 @@ Level * createLevel(int level)
     return newLevel;
 }
 
+//allocate memory for rooms and print out rooms on the screen
 Room ** roomsSetUp()
 {
 	int i;
@@ -287,6 +321,7 @@ Room ** roomsSetUp()
 	return rooms;
 }
 
+//ramdomly generate rooms, including position, size, doors, corridors
 Room * createRoom(int grid, int numberOfDoors)
 {
     int i;
@@ -338,6 +373,7 @@ Room * createRoom(int grid, int numberOfDoors)
     return newRoom;
 }
 
+// draw rooms on the screen
 int drawRoom(Room * room)
 {
     int x;
@@ -372,6 +408,7 @@ int drawRoom(Room * room)
     return 1;
 }
 
+//find the connecting pathway of doors
 void connectDoors(Level * level)
 {
 	int i;
@@ -382,6 +419,7 @@ void connectDoors(Level * level)
 	}
 }
 
+//save level positions
 char ** saveLevelPositions()
 {
     int x, y;
@@ -399,6 +437,7 @@ char ** saveLevelPositions()
     return positions;
 }
 
+//set up the player
 Player * playerSetUp()
 {
     Player * newPlayer;
@@ -413,12 +452,14 @@ Player * playerSetUp()
     return newPlayer;
 }
 
+//place the player in the room
 void placePlayer(Room ** rooms, Player * player)
 {
     player->position->x = rooms[3]->position.x + 1;
     player->position->y = rooms[3]->position.y + 1;
 }
 
+//add monsters to each room
 void addMonsters(Level* level)
 {
     int x;
@@ -433,6 +474,7 @@ void addMonsters(Level* level)
     }
 }
 
+//set rules for the type of monsters in each room
 Monster * selectMonster(int room)
 {
     int monster;
@@ -449,6 +491,7 @@ Monster * selectMonster(int room)
     }
 }
 
+//create the profile for different monsters
 Monster * createMonster(char symbol, int health, int attack,int pathfinding)
 {
     Monster * newMonster;
@@ -468,12 +511,14 @@ Monster * createMonster(char symbol, int health, int attack,int pathfinding)
     return newMonster;
 }
 
+//randomly place the monsters in the rooms
 void setStartingPosition(Monster * monster, Room * room)
 {
     monster->position->x = (rand() % (room->width - 2)) + room->position.x + 1;
     monster->position->y = (rand() % (room->height - 2)) + room->position.y + 1;
 }
 
+//draw level
 void drawLevel(Level * level)
 {
 	int x, y, i;
@@ -548,8 +593,7 @@ Position * handleInput(int input, Player * player)
     return newPosition;
 }
 
-
-
+//set the motion type of different monsters
 void moveMonsters(Level * level)
 {
     int x;
@@ -566,6 +610,7 @@ void moveMonsters(Level * level)
     }
 }
 
+//randomly refresh monster positions
 void pathfindingRandom(Position * position)
 {
     int random;
@@ -672,6 +717,7 @@ int addNeighbors(int ** frontier, int frontierCount, int *** cameFrom, int y, in
 
 }
 
+//a util function to find the shortest pathway from one point to another
 void pathFind(Position * start, Position * end)
 {
     int i, j;

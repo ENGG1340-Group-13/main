@@ -9,11 +9,11 @@ keyboardwin.o: keyboardwin.cpp keyboardwin.h
 maze.o: maze.cpp maze.h screenwin.h keyboardwin.h 
 	g++ $(FLAGS) -c $<
 
-main.o: main.cpp 
+main.o: main.cpp include.h screenwin.h keyboardwin.h maze.h 
 	g++ $(FLAGS) -c $<
 
 main: main.o maze.o keyboardwin.o screenwin.o
-	g++ -I ./local/include -I ./local/include/ncursestw -L ./local/lib -o $@ $^  -ldl -pthread
+	g++ -I ./local/include -I ./local/include/ncursestw -L ./local/lib -o $@ $^  -lncursestw -ldl -pthread
 
 clean:
 	rm *.o

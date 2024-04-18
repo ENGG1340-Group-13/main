@@ -1,3 +1,8 @@
+.ONESHELL:
+.EXPORT_ALL_VARIABLES:
+
+TERMINFO =/lib/terminfo
+
 FLAGS = -pedantic-errors -std=c++11
 
 screenwin.o: screenwin.cpp screenwin.h
@@ -14,6 +19,11 @@ main.o: main.cpp include.h maze.h screenwin.h keyboardwin.h
 
 main: main.o maze.o keyboardwin.o screenwin.o
 	g++ -I ./local/include -I ./local/include/ncursestw -L ./local/lib -o $@ $^ -lncursestw -ldl -pthread
+
+start:
+    TERMINFO=/lib/terminfo
+	./main
+.PHONY: start
 
 clean:
 	rm *.o

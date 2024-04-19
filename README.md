@@ -23,7 +23,7 @@ just type "make start" as your command and you can start!!
 [![asciicast]()
 
 ### Characters
-player: @
+player: @  
 monster1: X  
 monster2: G  
 monster3: T

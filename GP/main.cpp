@@ -1,8 +1,10 @@
 #include "include.h"
 #include "maze.h"
 #include "FlappyBird_map.h"
+#include "mini3.h"
 
 Game game;
+
 
 int main()
 {
@@ -22,23 +24,25 @@ void checkPosition(Position * newPosition, Level * level)
         case '+':
             playerMove(newPosition, level->player, level->tiles);
             break;
+
         case 'X':
 	{
-		Map mymap;
+		    Map mymap;
     		mymap.move_map();
     		break;
 	}
         case 'G':
         {
-			endwin();
+			      endwin();
             Maze mymaze;
-	        mymaze.maze_init();
-	        mymaze.maze_begin();
-			gameLoop(&game);
+	          mymaze.maze_init();
+	          mymaze.maze_begin();
+			      gameLoop(&game);
             break;
         }
-        /*case 'T':
-            combat(level->player, getMonsterAt(newPosition, level->monsters), 1);*/
+        case 'T':
+            mini3();
+	          break;
         default:
             break;
     }

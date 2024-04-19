@@ -19,9 +19,13 @@ FlappyBird_map.o: FlappyBird_map.cpp FlappyBird_map.h
 
 main.o: main.cpp include.h maze.h FlappyBird_map.h screenwin.h keyboardwin.h
 	g++ $(FLAGS) -I ./local/include -I ./local/include/ncursestw -L ./local/lib -c $<	
+ 
+mini3.o: mini3.cpp mini3.h
+  g++ $(FLAGS) -c $<
 
-main: main.o maze.o keyboardwin.o screenwin.o FlappyBird_map.o
+main: main.o maze.o keyboardwin.o screenwin.o FlappyBird_map.o mini3.o
 	g++ -I ./local/include -I ./local/include/ncursestw -L ./local/lib -o $@ $^ -lncursestw -ldl -pthread
+
 
 start:
 	TERMINFO = /lib/terminfo
@@ -32,4 +36,3 @@ clean:
 	rm *.o
 	rm main
 .PHONY: clean
-

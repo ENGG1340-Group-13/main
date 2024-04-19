@@ -1,4 +1,4 @@
-# VIRUS FIGHT
+# VIRUS INVASION
 ## Team members
 [Guo Xinyi](https://github.com/guoxinyicindy)&ensp;&ensp;&ensp;&ensp;&ensp;()
 
@@ -15,3 +15,9 @@
 [![asciicast]()
 
 ### Characters
+player: &  
+monster1: X  
+monster2: G  
+monster3: T
+
+### 

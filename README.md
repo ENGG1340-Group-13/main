@@ -3,6 +3,8 @@
 1. [Team members](#Team-members-)
 2. [How to play](#How-to-play-)
 3. [Features emplemented](#Features-emplemented-)
+4. [Library Usage](#Library-usage-)
+
 ## Team members
 [Guo Xinyi](https://github.com/guoxinyicindy)&ensp;&ensp;&ensp;&ensp;&ensp;()
 
@@ -75,3 +77,6 @@ We also name our variables neat and easy to know what it stands for.
 
 ### In-code documantation
 We conclude all the necessary explanation to specify what we are doing insode the code.
+
+## Library usage
+We put the required folder "local" together with our code. Then if you download our code, the required library will be included.

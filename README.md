@@ -79,4 +79,4 @@ We also name our variables neat and easy to know what it stands for.
 We conclude all the necessary explanation to specify what we are doing insode the code.
 
 ## Library usage
-We put the required folder "local" together with our code. Then if you download our code, the required library will be included.
+We put the required folder ["local"](https://github.com/ENGG1340-Group-13/main/tree/main/GP/local) together with our code. Then if you download our code, the required library will be included.

@@ -42,6 +42,19 @@ void ScreenWin::draw_char(int xpos,int ypos,char tmpicon){
     cout<<tmpicon<<endl;
 } 
 
+void ScreenWin::draw_string(int xpos,int ypos,string tmpicon){
+    
+    cout<<"\033["<<ypos+1<<";"<<xpos+1<<"H";
+    cout<<tmpicon;
+} 
+
+void ScreenWin::draw_partscreen(int left,int width,int linecnt,vector<string> &tmpvec){
+    cout << "\033[2J\033[1;1H";//将起始光标设成1，1
+    for (int y = 0; y < linecnt; y++){
+            cout << tmpvec[y].substr(left, width) << endl;
+        }
+}
+
 void ScreenWin::EndWin()
 {
     cout << "\033[2J\033[1;1H";

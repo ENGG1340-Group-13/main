@@ -27,22 +27,26 @@ void checkPosition(Position * newPosition, Level * level)
 
         case 'X':
 	{
+			endwin();
 		    Map mymap;
     		mymap.move_map();
+			gameLoop(&game);
     		break;
 	}
         case 'G':
         {
-			      endwin();
+			endwin();
             Maze mymaze;
-	          mymaze.maze_init();
-	          mymaze.maze_begin();
-			      gameLoop(&game);
+	        mymaze.maze_init();
+	        mymaze.maze_begin();
+			gameLoop(&game);
             break;
         }
         case 'T':
+			endwin();
             mini3();
-	          break;
+			gameLoop(&game);
+	        break;
         default:
             break;
     }

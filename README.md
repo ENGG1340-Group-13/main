@@ -54,10 +54,10 @@ Now, You can get started!!
 3. We have random monsters and moving paths generated in minigame2.
 
 ### Various data structures for storing game status
-1. We have different [structures](include.h) for storing gamer position, door, game ,level, monster in main game
-2. We use [maps and vectors](mini3.cpp) to store the fragments and answers provided in minigame3.
-3. We use [structures and class](maze.h) to store the map and monsters in minigame2.
-4. We use [map](screenwin.h) to store the map and other status in minigame1.
+1. We have different [structures](https://github.com/ENGG1340-Group-13/main/blob/main/GP/include.h) for storing gamer position, door, game ,level, monster in main game
+2. We use [maps and vectors](https://github.com/ENGG1340-Group-13/main/blob/main/GP/mini3.cpp) to store the fragments and answers provided in minigame3.
+3. We use [structures and class](https://github.com/ENGG1340-Group-13/main/blob/main/GP/maze.h) to store the map and monsters in minigame2.
+4. We use [map](https://github.com/ENGG1340-Group-13/main/blob/main/GP/screenwin.h) to store the map and other status in minigame1.
 
 ### Dynamic memory management
 1. We use [dynamic arrays](main.cpp) to make the player move in main game.

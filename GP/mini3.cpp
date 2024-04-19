@@ -204,7 +204,7 @@ void f_L2(bool &win) {
 }
 
 //This is the main funtion showing rules and judging the final result
-int main(){
+void mini3(){
     int level;
     string levels;
 
@@ -243,5 +243,5 @@ int main(){
     }else{
         cout << red << "Aho! You failed!" << clre << endl;
     }
-    return 0;
+
 }

@@ -2,6 +2,8 @@
 #include "maze.h"
 #include "FlappyBird_map.h"
 
+Game game;
+
 int main()
 {
 	screenSetUp();
@@ -28,9 +30,11 @@ void checkPosition(Position * newPosition, Level * level)
 	}
         case 'G':
         {
+			endwin();
             Maze mymaze;
 	        mymaze.maze_init();
 	        mymaze.maze_begin();
+			gameLoop(&game);
             break;
         }
         /*case 'T':
@@ -136,7 +140,6 @@ void print_intro()
 void menuLoop()
 {
 	int choice = 4;
-	Game game;
 	game.currentLevel = 0;
 
 	while(true)

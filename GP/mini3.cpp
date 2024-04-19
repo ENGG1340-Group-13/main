@@ -205,6 +205,7 @@ void f_L2(bool &win) {
 
 //This is the main funtion showing rules and judging the final result
 void mini3(){
+    cout << "\033[2J\033[1;1H";
     int level;
     string levels;
 
@@ -243,5 +244,5 @@ void mini3(){
     }else{
         cout << red << "Aho! You failed!" << clre << endl;
     }
-
+    cout << "\033[2J\033[1;1H";
 }

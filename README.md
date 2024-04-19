@@ -23,7 +23,7 @@ just type "make start" as your command and you can start!!
 [![asciicast]()
 
 ### Characters
-player: &  
+player: @
 monster1: X  
 monster2: G  
 monster3: T
@@ -63,6 +63,8 @@ Now, You can get started!!
 1. We use [dynamic arrays](https://github.com/ENGG1340-Group-13/main/blob/main/GP/main.cpp) to make the player move in main game.
 
 ### File Input/Output
+1. We read the [map](https://github.com/ENGG1340-Group-13/main/blob/main/GP/maze.cpp) file in the minigame2.
+2. We randomly input the [obstacles](https://github.com/ENGG1340-Group-13/main/blob/main/GP/FlappyBird_map.cpp) file in the minigame1.
 
 ### Program code in multiple files
 We divide our different minigames code and also the header files, so we link them together in the [makefile](https://github.com/ENGG1340-Group-13/main/blob/main/GP/makefile).

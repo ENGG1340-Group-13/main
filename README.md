@@ -60,12 +60,12 @@ Now, You can get started!!
 4. We use [map](https://github.com/ENGG1340-Group-13/main/blob/main/GP/screenwin.h) to store the map and other status in minigame1.
 
 ### Dynamic memory management
-1. We use [dynamic arrays](main.cpp) to make the player move in main game.
+1. We use [dynamic arrays](https://github.com/ENGG1340-Group-13/main/blob/main/GP/main.cpp) to make the player move in main game.
 
 ### File Input/Output
 
 ### Program code in multiple files
-We divide our different minigames code and also the header files, so we link them together in the [makefile](makefile).
+We divide our different minigames code and also the header files, so we link them together in the [makefile](https://github.com/ENGG1340-Group-13/main/blob/main/GP/makefile).
 
 ### Proper Indentation and naming styles
 We all make proper indentation in the code, making sure the functions can be operated well.

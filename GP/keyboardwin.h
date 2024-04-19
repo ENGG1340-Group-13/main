@@ -9,7 +9,7 @@ using namespace std;
 #define KEY_down 'B'
 #define KEY_left 'D'
 #define KEY_right 'C'
-#define KEY_SPACE 32
+#define KEY_SPACE ' '
 #define KEY_enter '\n'
 #define KEY_esc '\033'
 #define KEY_q 'q'

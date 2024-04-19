@@ -29,23 +29,23 @@ monster2: G
 monster3: T
 
 ### Rules
-You are an invading virus.
-To successfully find your way into a human body, you have to get through a series of serious chanllenges.
+You are an invading virus. 
+To successfully find your way into a human body, you have to get through a series of serious chanllenges.  
 
-You may encounter the physical and chemical barriers.
-The most powerful weapon of them is their mucus traps.
-To get through those traps, you should press the space key to get a fewer higher. 
-Remember that if you not press, then you will get falling and the speed is increasing!
+You may encounter the physical and chemical barriers. 
+The most powerful weapon of them is their mucus traps. 
+To get through those traps, you should press the space key to get a fewer higher.  
+Remember that if you not press, then you will get falling and the speed is increasing!  
 
-You may then encounter the maze map according to the non-specific innate responses.
-There are several monsters appear randomly in the map, and they also move without any order.
-Please carefully get rid of them and also find your way out!
+You may then encounter the maze map according to the non-specific innate responses. 
+There are several monsters appear randomly in the map, and they also move without any order.  
+Please carefully get rid of them and also find your way out!  
 
-Finally, you may turn to the most scaring specific adaptive responses.
-With their special ability of recognizing outsiders, they will immediately clear you out if you cannot pretend to be a member of the body.
-To make yourself a good pretender, you should be able to choose the corresonding protein size that match with the specific immune cells.
+Finally, you may turn to the most scaring specific adaptive responses. 
+With their special ability of recognizing outsiders, they will immediately clear you out if you cannot pretend to be a member of the body. 
+To make yourself a good pretender, you should be able to choose the corresonding protein size that match with the specific immune cells.  
 
-Now, You can get started!! 
+Now, You can get started!!  
 
 ## Features Emplemented ✅
 ### Generation of random game sets or events

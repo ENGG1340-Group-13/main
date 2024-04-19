@@ -14,10 +14,13 @@ keyboardwin.o: keyboardwin.cpp keyboardwin.h
 maze.o: maze.cpp maze.h screenwin.h keyboardwin.h 
 	g++ $(FLAGS) -c $<
 
-main.o: main.cpp include.h maze.h screenwin.h keyboardwin.h
+FlappyBird_map.o: FlappyBird_map.cpp FlappyBird_map.h
+	g++ $(FLAGS) -c $<
+
+main.o: main.cpp include.h maze.h FlappyBird_map.h screenwin.h keyboardwin.h
 	g++ $(FLAGS) -I ./local/include -I ./local/include/ncursestw -L ./local/lib -c $<	
 
-main: main.o maze.o keyboardwin.o screenwin.o
+main: main.o maze.o keyboardwin.o screenwin.o FlappyBird_map.o
 	g++ -I ./local/include -I ./local/include/ncursestw -L ./local/lib -o $@ $^ -lncursestw -ldl -pthread
 
 start:

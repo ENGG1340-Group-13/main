@@ -19,7 +19,12 @@ void checkPosition(Position * newPosition, Level * level)
         case '+':
             playerMove(newPosition, level->player, level->tiles);
             break;
-        //case 'X':
+        case 'X':
+	{
+		Map mymap;
+    		mymap.move_map();
+    		break;
+	}
         case 'G':
         {
             Maze mymaze;

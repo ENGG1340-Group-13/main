@@ -1,5 +1,6 @@
 #include "include.h"
 #include "maze.h"
+#include "FlappyBird_map.h"
 
 int main()
 {

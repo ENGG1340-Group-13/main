@@ -31,6 +31,7 @@ string L2_r = "*** *** ***\n*** *** ***\n*** *** ***\n\n";
 string yellow = "\033[33m";
 string blue = "\033[34m";
 string green = "\033[32m";
+string red = "\033[31m";
 string clre = "\033[0m";
 
 //The following are the answers
@@ -203,7 +204,7 @@ void f_L2(bool &win) {
 }
 
 //This is the main funtion showing rules and judging the final result
-void mini3(){
+int main(){
     int level;
     string levels;
 
@@ -238,8 +239,9 @@ void mini3(){
         f_L2(win);
     } 
     if (win) {
-        cout << "CONGRATULATIONS!!! You have passed all the cases!";
+        cout << "CONGRATULATIONS!!! You have passed all the cases!" << endl;
     }else{
-        cout << "/033[31mAho! You failed!/033[0m";
+        cout << red << "Aho! You failed!" << clre << endl;
     }
+    return 0;
 }

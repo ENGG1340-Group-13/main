@@ -30,7 +30,7 @@ void checkPosition(Position * newPosition, Level * level)
 			endwin();
 		    Map mymap;
     		mymap.move_map();
-			gameLoop(&game);
+			initscr();
     		break;
 	}
         case 'G':
@@ -39,13 +39,13 @@ void checkPosition(Position * newPosition, Level * level)
             Maze mymaze;
 	        mymaze.maze_init();
 	        mymaze.maze_begin();
-			gameLoop(&game);
+			initscr();
             break;
         }
         case 'T':
 			endwin();
             mini3();
-			gameLoop(&game);
+			initscr();
 	        break;
         default:
             break;

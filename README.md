@@ -19,7 +19,7 @@
 ## How to play
 ### Get started
 🌟 REMEMBER to run in the terminal!!
-just type "make start" as your command and you can start!!
+just type "make main" and then "make start" as your command and you can start!!
 
 ### Demo
 [![asciicast]()

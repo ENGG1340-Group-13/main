@@ -188,6 +188,7 @@ int Maze::move_obstacles(){
         //设置在移动方向数组中的坐标       
         x_direction=myobstacles[i].direct_x;
         y_direction=myobstacles[i].direct_y;
+		int count = 0;
         while(true){
             int tmp=0;
             switch(mymap.mem_map[my+a[y_direction]][mx+a[x_direction]]){
@@ -195,8 +196,9 @@ int Maze::move_obstacles(){
                     updatechar(x,y,' '); 
                     x=x+a[x_direction];
                     y=y+a[y_direction];
-                    updatechar(x,y,OBSTACLE); 
-                    tmp=1;//成功移动                    
+                    updatechar(x,y,OBSTACLE);
+                    tmp=1;//成功移动        
+					count++;
                     break; 
                 case WARRIOR://前方是勇士，勇士被撞死，游戏结束 
                     updatechar(x,y,' '); 
@@ -204,12 +206,16 @@ int Maze::move_obstacles(){
                     y=y+a[y_direction];
                     updatechar(x,y,WARRIOR_DIE);
                     tmp=4;//勇士被撞死，游戏结束
+					count++;
                     break;                                      
                 case MAP_CHAR://前方是墙，不能走 
+					count++;
                     break;              
                 case OBSTACLE://前方是障碍物，不能走 
+					count++;
                     break;
                 case MAP_EXIT://前方是出口，不能走 
+					count++;
                     break;          
             } 
             if(tmp==1)

@@ -12,7 +12,7 @@
 
 [Yang Jiayi](https://github.com/Seaflight4)&ensp;&ensp;&ensp;&ensp;&ensp;()
 
-[Zhao Guandi](https://github.com/Booker-zgd)&ensp;&ensp;()
+[Zhao Guandi](https://github.com/Booker-zgd)&ensp;&ensp;(3036127139)
 
 [Zhu Jiayi](https://github.com/Andreazjy)&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;(3036127713)
 

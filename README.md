@@ -49,6 +49,8 @@ To make yourself a good pretender, you should be able to choose the corresonding
 
 Now, You can get started!!  
 
+🌟Remember, press "Q" on your keyboard if you want to start a new game or quit out.
+
 ## Features Emplemented ✅
 ### Generation of random game sets or events
 1. We have random size of romms and random connections between the three rooms in the main map.

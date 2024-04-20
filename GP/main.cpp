@@ -9,6 +9,7 @@ Game game;
 int main()
 {
 	screenSetUp();
+	print_intro();
   	menuLoop();
 	endwin();
 	return 0;

@@ -51,6 +51,9 @@ void Map::move_bird(int jump){
 }
 
 bool crash(int xpos,int ypos,vector<string> map){
+    if (ypos < 0 || ypos >= map.size()){
+        return true;
+    }
     for (int i = xpos; i < xpos + 5; ++i){
         if (map[ypos][i] == 'X'){
             return true;
@@ -84,7 +87,7 @@ void Map::move_map(){
     int tmpspeed_bird = speed_bird;
     keyboard.begin_listening();
     screen.init();
-    while (count <= 25 * 5){
+    while (true){
         if(tmpspeed_obstacle == 0){
             if (count % 25 == 0){
             refresh_map();
@@ -101,12 +104,13 @@ void Map::move_map(){
             tmpspeed_obstacle = speed_obstacle;
         }
         if (keyboard.read_key() == KEY_SPACE){
-            bird.speed = -2;
+            bird.speed = -1;
         }
         if(tmpspeed_bird <= 0){
             screen.draw_string(0,bird.ypos, "     ");
             if (bird.speed >= 0){
                 if (crash(bird.xpos,bird.ypos + 1,map)){
+                    screen.EndWin();
                     screen.draw_string(0,0,"Game Over!");
                     break;
                 }
@@ -114,6 +118,7 @@ void Map::move_map(){
             }
             else{
                 if (crash(bird.xpos,bird.ypos - 1,map)){
+                    screen.EndWin();
                     screen.draw_string(0,0,"Game Over!");
                     break;
                 }
@@ -122,10 +127,16 @@ void Map::move_map(){
             screen.draw_string(0,bird.ypos, BIRD);
             tmpspeed_bird = speed_bird;
         }
+        if (count > 25 * 5){
+            screen.EndWin();
+            screen.draw_string(0,0,"Win!");
+            break;
+        }
         tmpspeed_obstacle--;
         tmpspeed_bird -= abs(bird.speed);
         }
         keyboard.stop_listening();
-        screen.EndWin();
+        //this_thread::sleep_for(chrono::seconds(2));
+        //screen.EndWin();
 }
 

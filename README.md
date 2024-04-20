@@ -8,7 +8,7 @@
 ## Team members
 [Guo Xinyi](https://github.com/guoxinyicindy)&ensp;&ensp;&ensp;&ensp;&ensp;()
 
-[Liang Aoqi](https://github.com/LEUNGNGOKI)&ensp;&ensp;&ensp;&ensp;()
+[Leung Ngo Ki](https://github.com/LEUNGNGOKI)&ensp;&ensp;&ensp;&ensp;(3035930826)
 
 [Yang Jiayi](https://github.com/Seaflight4)&ensp;&ensp;&ensp;&ensp;&ensp;()
 

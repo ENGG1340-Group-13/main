@@ -110,7 +110,6 @@ void Map::move_map(){
             screen.draw_string(0,bird.ypos, "     ");
             if (bird.speed >= 0){
                 if (crash(bird.xpos,bird.ypos + 1,map)){
-                    screen.EndWin();
                     screen.draw_string(0,0,"Game Over!");
                     break;
                 }
@@ -118,7 +117,6 @@ void Map::move_map(){
             }
             else{
                 if (crash(bird.xpos,bird.ypos - 1,map)){
-                    screen.EndWin();
                     screen.draw_string(0,0,"Game Over!");
                     break;
                 }
@@ -128,7 +126,6 @@ void Map::move_map(){
             tmpspeed_bird = speed_bird;
         }
         if (count > 25 * 5){
-            screen.EndWin();
             screen.draw_string(0,0,"Win!");
             break;
         }
@@ -136,7 +133,6 @@ void Map::move_map(){
         tmpspeed_bird -= abs(bird.speed);
         }
         keyboard.stop_listening();
-        //this_thread::sleep_for(chrono::seconds(2));
-        //screen.EndWin();
+        screen.EndWin();
 }
 

@@ -57,7 +57,10 @@ void ScreenWin::draw_partscreen(int left,int width,int linecnt,vector<string> &t
 
 void ScreenWin::EndWin()
 {
-    cout << "\033[2J\033[1;1H";
+    cout << "\033[2J\033[1;1H"<<endl;
     tcsetattr(STDIN_FILENO, TCSANOW, &old_tio);
+    cout<<"Press Enter to continue"<<endl;
+    int c;
+    while ((c = getchar()) != '\n' && c != EOF) { }
 }
 

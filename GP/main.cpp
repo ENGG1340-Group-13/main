@@ -26,22 +26,22 @@ void checkPosition(Position * newPosition, Level * level)
             break;
 
         case 'X':
-	{
+	
 			endwin();
 		    Map mymap;
     		mymap.move_map();
 			initscr();
     		break;
-	}
+	
         case 'G':
-        {
+        
 			endwin();
             Maze mymaze;
 	        mymaze.maze_init();
 	        mymaze.maze_begin();
 			initscr();
             break;
-        }
+        
         case 'T':
 			endwin();
             mini3();
@@ -62,7 +62,6 @@ void screenSetUp()
 	refresh();
 
     start_color();
-    bkgd(COLOR_PAIR(5));
     init_pair(0, COLOR_RED, COLOR_WHITE);
     init_pair(1, COLOR_GREEN, COLOR_WHITE);
     init_pair(2, COLOR_YELLOW, COLOR_WHITE);

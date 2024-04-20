@@ -62,11 +62,13 @@ void screenSetUp()
 	refresh();
 
     start_color();
-    init_pair(0, COLOR_RED, COLOR_BLACK);
-    init_pair(1, COLOR_GREEN, COLOR_BLACK);
-    init_pair(2, COLOR_YELLOW, COLOR_BLACK);
-    init_pair(3, COLOR_BLUE, COLOR_BLACK);
-    init_pair(4, COLOR_CYAN, COLOR_BLACK);
+    bkgd(COLOR_PAIR(5));
+    init_pair(0, COLOR_RED, COLOR_WHITE);
+    init_pair(1, COLOR_GREEN, COLOR_WHITE);
+    init_pair(2, COLOR_YELLOW, COLOR_WHITE);
+    init_pair(3, COLOR_BLUE, COLOR_WHITE);
+    init_pair(4, COLOR_CYAN, COLOR_WHITE);
+    init_pair(4, COLOR_CYAN, COLOR_WHITE);
 
     for (int i = 0; i < 30; i++)
     {
@@ -267,11 +269,11 @@ int mainMenu()
 void endGame()
 {
     start_color();
-    init_pair(0, COLOR_RED, COLOR_BLACK);
-    init_pair(1, COLOR_GREEN, COLOR_BLACK);
-    init_pair(2, COLOR_YELLOW, COLOR_BLACK);
-    init_pair(3, COLOR_BLUE, COLOR_BLACK);
-    init_pair(4, COLOR_CYAN, COLOR_BLACK);
+    init_pair(0, COLOR_RED, COLOR_WHITE);
+    init_pair(1, COLOR_GREEN, COLOR_WHITE);
+    init_pair(2, COLOR_YELLOW, COLOR_WHITE);
+    init_pair(3, COLOR_BLUE, COLOR_WHITE);
+    init_pair(4, COLOR_CYAN, COLOR_WHITE);
 
     clear();
     napms(500);

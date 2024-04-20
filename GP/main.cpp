@@ -26,22 +26,22 @@ void checkPosition(Position * newPosition, Level * level)
             break;
 
         case 'X':
-	
+	{
 			endwin();
 		    Map mymap;
     		mymap.move_map();
 			initscr();
     		break;
-	
+	}
         case 'G':
-        
+        {
 			endwin();
             Maze mymaze;
 	        mymaze.maze_init();
 	        mymaze.maze_begin();
 			initscr();
             break;
-        
+        }
         case 'T':
 			endwin();
             mini3();
@@ -61,38 +61,28 @@ void screenSetUp()
 	keypad(stdscr, true);
 	refresh();
 
-    start_color();
-    init_pair(0, COLOR_RED, COLOR_WHITE);
-    init_pair(1, COLOR_GREEN, COLOR_WHITE);
-    init_pair(2, COLOR_YELLOW, COLOR_WHITE);
-    init_pair(3, COLOR_BLUE, COLOR_WHITE);
-    init_pair(4, COLOR_CYAN, COLOR_WHITE);
-    init_pair(5, COLOR_WHITE, COLOR_WHITE);
+    // start_color();
+    // init_pair(0, COLOR_RED, COLOR_WHITE);
+    // init_pair(1, COLOR_GREEN, COLOR_WHITE);
+    // init_pair(2, COLOR_YELLOW, COLOR_WHITE);
+    // init_pair(3, COLOR_BLUE, COLOR_WHITE);
+    // init_pair(4, COLOR_CYAN, COLOR_WHITE);
+    // init_pair(5, COLOR_WHITE, COLOR_WHITE);
 
     for (int i = 0; i < 30; i++)
     {
-        attron(COLOR_PAIR(0));
-
         mvprintw(15,10 + 2 * i, ">>");
-        attroff(COLOR_PAIR(0));
         refresh();
         napms(100);
     }
     mvprintw(15,70, " 100 percent");
     refresh();
+    clear();
 
     napms(1000);
-
-    for (int i = 0; i < 5; i++)
-    {
-        attron(COLOR_PAIR(i%5));
-        print_start_page();
-        attroff(COLOR_PAIR(i%5));
-        refresh();
-        napms(500);
-    }
-
-    napms(1000);
+    print_start_page();
+    
+    napms(500);
     mvprintw(25,35, "Press Enter to Start Game >>>");
     refresh();
     getch();
@@ -267,25 +257,16 @@ int mainMenu()
 //function to end game
 void endGame()
 {
-    start_color();
-    init_pair(0, COLOR_RED, COLOR_WHITE);
-    init_pair(1, COLOR_GREEN, COLOR_WHITE);
-    init_pair(2, COLOR_YELLOW, COLOR_WHITE);
-    init_pair(3, COLOR_BLUE, COLOR_WHITE);
-    init_pair(4, COLOR_CYAN, COLOR_WHITE);
+    // start_color();
+    // init_pair(0, COLOR_RED, COLOR_WHITE);
+    // init_pair(1, COLOR_GREEN, COLOR_WHITE);
+    // init_pair(2, COLOR_YELLOW, COLOR_WHITE);
+    // init_pair(3, COLOR_BLUE, COLOR_WHITE);
+    // init_pair(4, COLOR_CYAN, COLOR_WHITE);
 
     clear();
     napms(500);
-
-    for (int i = 0; i < 5; i++)
-    {
-        attron(COLOR_PAIR(i%5));
-        print_end_page();
-        attroff(COLOR_PAIR(i%5));
-        refresh();
-        napms(500);
-    }
-
+    print_end_page();
     return;
 }
 
@@ -809,53 +790,100 @@ void print_end_page()
     mvprintw(3,0,"::::::,':                                                                                          *:");
     mvprintw(4,0,":[:.,':::");
     mvprintw(5,0,"Vv:::::.,...,,;:'d:");
-    mvprintw(6,0,":>::::/:##########  ##      ###  ######");
-    mvprintw(7,0,"::8*::': ##         ###     ##   ##   ##");
+    refresh();
+    napms(200);
+    
     mvprintw(8,0,"::>:::::|##         ## #    ##   ##     ##");
     mvprintw(9,0,";:::cD:  #########  ##  #   ##   ##     ##");
-   mvprintw(10,0,"::B::;   ##         ##   #  ##   ##     ##");
-   mvprintw(11,0,"{::G:.,::##         ##    # ##   ##    ##");
+   refresh();
+    napms(200);
+   mvprintw(6,0,":>::::/:##########  ##      ###  ######");
+    mvprintw(7,0,"::8*::': ##         ###     ##   ##   ##");
+    refresh();
+    napms(200);
    mvprintw(12,0,"::::':  ##########  ##     ###   ######"  );
    mvprintw(13,0,":::::|              ");
+   refresh();
+    napms(200);
+   mvprintw(17,0,"::                                     ##  #####  ########   ##  #  #  ##   ######## ");
+   mvprintw(18,0,":+{{::::::L>::::{{::                   ##      #  ##    ##   ##   ##   ##   ## ");
+   refresh();
+    napms(200);
    mvprintw(14,0,".,::                                     #######     ####     ###      ###   ######### ");
    mvprintw(15,0,":G                                     ##          ##  ##    ## #    # ##   ##  ");
    mvprintw(16,0,":{{:::::<                              ##         ##    ##   ## ##  ## ##   ## ");
-   mvprintw(17,0,"::                                     ##  #####  ########   ##  #  #  ##   ######## ");
-   mvprintw(18,0,":+{{::::::L>::::{{::                   ##      #  ##    ##   ##   ##   ##   ## ");
+   refresh();
+    napms(200);
+   mvprintw(10,0,"::B::;   ##         ##   #  ##   ##     ##");
+   mvprintw(11,0,"{::G:.,::##         ##    # ##   ##    ##");
+   refresh();
+    napms(200);
    mvprintw(19,0,":Vv:::::.,..                           ##      #  ##    ##   ##        ##   ##     ");
    mvprintw(20,0,":::Vv:::::.,..:                         #######   ##    ##   ##        ##   ######### ");
-   mvprintw(21,0,"::::*JI::");
-   mvprintw(22,0,"::::<::::{{::::}:{{::::{{::::");
+   refresh();
+    napms(200);
    mvprintw(23,0,"::::<::::{{::::}:{{::::{{::::");
    mvprintw(24,0,"::::<::::{{::::}:{{::::{{::::");
    mvprintw(25,0,":Vv:::::.,..Vv:::::.,..Vv:::::.,..Vv:::::.,..");
    mvprintw(26,0,",*****************************************************************************************************");
+    refresh();
+    napms(200);
+   mvprintw(21,0,"::::*JI::");
+   mvprintw(22,0,"::::<::::{{::::}:{{::::{{::::");
+   refresh();
+    napms(200);
+   
 }
 
 void print_start_page()
 {
     mvprintw(0,0,":>***************************************************************************************************");
     mvprintw(1,0,":                                                                            v:::::.,...,,;:'d:::::::");
+    refresh();
+    napms(200);
     mvprintw(2,0,"::,                                                                                               :*:");
     mvprintw(3,0,"::::::,':                                                                                          *:");
+    refresh();
+    napms(200);
     mvprintw(4,0,":[:.,':::");
     mvprintw(5,0,"Vv:::::.,...,,;:'d:");
-    mvprintw(6,0,":>::::/:###     ##");
-    mvprintw(7,0,"::8*::':  ##    ##  ####  #####   #   ##   ####");
+    refresh();
+    napms(200);
     mvprintw(8,0,"::>:::::|  ##   ##   ##   #   ##  #   ##  ##   ");
     mvprintw(9,0,";:::cD:     ##  ##   ##   #####   #   ##   ####");
+    refresh();
+    napms(200);
+   mvprintw(6,0,":>::::/:###     ##");
+    mvprintw(7,0,"::8*::':  ##    ##  ####  #####   #   ##   ####");
+    refresh();
+    napms(200);
    mvprintw(10,0,"::B::;       ## ##   ##   #  ##   #   ##      ##");
    mvprintw(11,0,"{::G:.,::     ####  ####  #   ##   #####  #####");
+    refresh();
+    napms(200);
+      mvprintw(14,0,".,::                      ##    # #   ##   #   ##  #  ##    ##       ##   #   ##  # #   ##");
+   mvprintw(15,0,":G                        ##    #  #  ##    #  ##  ######    ####    ##   #   ##  #  #  ##");
+   refresh();
+    napms(200);
    mvprintw(12,0,"::::':");
    mvprintw(13,0,":::::|                   ####   ##    ##  ##   ##  ####      ####   ####   ####   ##    ##");
-   mvprintw(14,0,".,::                      ##    # #   ##   #   ##  #  ##    ##       ##   #   ##  # #   ##");
-   mvprintw(15,0,":G                        ##    #  #  ##    #  ##  ######    ####    ##   #   ##  #  #  ##");
+    refresh();
+    napms(200);
    mvprintw(16,0,":{{:::::<                 ##    #   # ##     # ##  #    ##      ##   ##   #   ##  #   # ##");
    mvprintw(17,0,"::                       ####   #    ###      ###  #     ##  ####   ####   ####   #    ###");
+   refresh();
+    napms(200);
+   mvprintw(22,0,":Vv:::::.,..Vv:::::.,..Vv:::::.,..Vv:::::.,..");
+      mvprintw(23,0,",*****************************************************************************************************");
+    refresh();
+    napms(200);
    mvprintw(18,0,":+{{::::::L>::::{{::");
    mvprintw(19,0,":Vv:::::.,..");
+   refresh();
+    napms(200);
    mvprintw(20,0,":::Vv:::::.,..:");
    mvprintw(21,0,"::::<::::{{::::}:{{::::{{::::");
-   mvprintw(22,0,":Vv:::::.,..Vv:::::.,..Vv:::::.,..Vv:::::.,..");
-   mvprintw(23,0,",*****************************************************************************************************");
+   refresh();
+    napms(1200);
+   
 }

@@ -371,8 +371,8 @@ Room * createRoom(int grid, int numberOfDoors)
     newRoom->width = rand() % 14 + 11; /* max size 24 */
 
     /* offset */
-    newRoom->position.x += rand() % (50 - newRoom->width) + 1;
-    newRoom->position.y += rand() % (15 - newRoom->height) + 1;
+    newRoom->position.x += rand() % (49 - newRoom->width) + 1;
+    newRoom->position.y += rand() % (14 - newRoom->height) + 1;
 
     newRoom->doors = (Door**)malloc(sizeof(Door *) * numberOfDoors);
 
@@ -441,7 +441,7 @@ char ** saveLevelPositions()
 {
     int x, y;
     char ** positions;
-    positions = (char **)malloc(sizeof(char *) * 40);
+    positions = (char **)malloc(sizeof(char *) * 30);
 
     for (y = 0; y < MAX_HEIGHT; y++)
     {

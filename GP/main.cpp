@@ -68,7 +68,7 @@ void screenSetUp()
     init_pair(2, COLOR_YELLOW, COLOR_WHITE);
     init_pair(3, COLOR_BLUE, COLOR_WHITE);
     init_pair(4, COLOR_CYAN, COLOR_WHITE);
-    init_pair(4, COLOR_CYAN, COLOR_WHITE);
+    init_pair(5, COLOR_WHITE, COLOR_WHITE);
 
     for (int i = 0; i < 30; i++)
     {

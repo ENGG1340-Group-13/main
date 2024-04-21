@@ -12,7 +12,8 @@
 #include "keyboardwin.h"
 
 
-#define MAPFILENAME "map3.txt"
+#define MAPFILENAME1 "map3.txt"
+#define MAPFILENAME2 "map4.txt"
 
 #define MAP_CHAR 'X'
 #define MAP_EXIT 'E'
@@ -23,6 +24,11 @@
 
 #define MAP_POS_X 0
 #define MAP_POS_Y 0
+
+#define RED "31m"
+#define BLUE "34m"
+#define GREEN "32m"
+#define DEFAULT_COLOR "0m"
 
 #define SPEED 250000000
 
@@ -58,7 +64,7 @@ class Maze
 private:
     void mapinitial();
 	void generate_obs();
-    void updatechar(int xpos,int ypos,char tmpicon);    
+    void updatechar(int xpos,int ypos,char tmpicon, string color);    
 public:
     Mem_Map mymap;//游戏中的“地图” 
     Mem_Warrior mywarrior;//游戏中的“勇士” 

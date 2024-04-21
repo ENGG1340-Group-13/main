@@ -80,8 +80,9 @@ void Map::refresh_map(){
     fin.close();
 }
 
-void Map::move_map(){
+int Map::move_map(){
     int count = 0;
+    int tmpresult=-1;
     int const bird_x = 15;
     int tmpspeed_obstacle = speed_obstacle;
     int tmpspeed_bird = speed_bird;
@@ -110,6 +111,7 @@ void Map::move_map(){
             screen.draw_string(0,bird.ypos, "     ");
             if (bird.speed >= 0){
                 if (crash(bird.xpos,bird.ypos + 1,map)){
+                    tmpresult=0;
                     screen.draw_string(0,0,"Game Over!");
                     break;
                 }
@@ -117,6 +119,7 @@ void Map::move_map(){
             }
             else{
                 if (crash(bird.xpos,bird.ypos - 1,map)){
+                    tmpresult=0;
                     screen.draw_string(0,0,"Game Over!");
                     break;
                 }
@@ -126,6 +129,7 @@ void Map::move_map(){
             tmpspeed_bird = speed_bird;
         }
         if (count > 25 * 5){
+            tmpresult=1;
             screen.draw_string(0,0,"Win!");
             break;
         }
@@ -134,5 +138,6 @@ void Map::move_map(){
         }
         keyboard.stop_listening();
         screen.EndWin();
+        return tmpresult;
 }
 

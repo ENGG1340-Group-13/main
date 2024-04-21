@@ -188,17 +188,17 @@ int Maze::move_obstacles(){
         //设置在移动方向数组中的坐标       
         x_direction=myobstacles[i].direct_x;
         y_direction=myobstacles[i].direct_y;
-		int count = 0;
-        while(true){
+        int count = 0;
+        while(count<20){
             int tmp=0;
             switch(mymap.mem_map[my+a[y_direction]][mx+a[x_direction]]){
                 case ' '://前方是空格，可以走 
                     updatechar(x,y,' '); 
                     x=x+a[x_direction];
                     y=y+a[y_direction];
-                    updatechar(x,y,OBSTACLE);
-                    tmp=1;//成功移动        
-					count++;
+                    updatechar(x,y,OBSTACLE); 
+                    tmp=1;//成功移动   
+                    count ++;                 
                     break; 
                 case WARRIOR://前方是勇士，勇士被撞死，游戏结束 
                     updatechar(x,y,' '); 
@@ -206,16 +206,16 @@ int Maze::move_obstacles(){
                     y=y+a[y_direction];
                     updatechar(x,y,WARRIOR_DIE);
                     tmp=4;//勇士被撞死，游戏结束
-					count++;
+                    count++;
                     break;                                      
                 case MAP_CHAR://前方是墙，不能走 
-					count++;
+                    count++;
                     break;              
                 case OBSTACLE://前方是障碍物，不能走 
-					count++;
+                    count++;
                     break;
                 case MAP_EXIT://前方是出口，不能走 
-					count++;
+                    count++;
                     break;          
             } 
             if(tmp==1)
@@ -231,7 +231,7 @@ int Maze::move_obstacles(){
         myobstacles[i].direct_x=x_direction;
         myobstacles[i].direct_y=y_direction;
     }
-    return 0;//出错 
+    return 0;
 }     
 
 /* 初始化"内存屏幕"*/
@@ -247,8 +247,9 @@ void Maze::maze_init(){
 }
 
 /* 游戏的主循环函数*/
-void Maze::maze_begin(){
+int Maze::maze_begin(){
     int quit=0;
+    int tmpresult = -1;
     int keyinput=0;
     int tmpspeed=SPEED;//设置障碍物移动速度的控制值 
     while(true){
@@ -256,17 +257,27 @@ void Maze::maze_begin(){
         keyinput=keyboard.read_key();
         if (keyinput==KEY_up|keyinput==KEY_down|keyinput==KEY_left|keyinput==KEY_right){
             int tmp=move_warrior(keyinput);
-            if(tmp==3||tmp==4)
+            if(tmp==3)
+            {
+                tmpresult=0;
                 quit=1;
+            }
+            else if (tmp==4){
+                tmpresult=1;
+                quit=1;
+            }
         }else if(keyinput==KEY_q){
+            tmpresult=2;
             quit=1;
         }
         //如果障碍物速度的控制值降到 0，就移动一次所有的障碍物 
         if(--tmpspeed==0){
             int tmp=move_obstacles();           
             tmpspeed=SPEED;//重新设置障碍物速度控制值
-            if(tmp==4)
+            if(tmp==4){
+                tmpresult=0;
                 quit=1;
+            }
         }          
         //如果是‘ESC’键，就结束键盘监听的守护线程，并退出循环 
         if(quit){
@@ -275,5 +286,6 @@ void Maze::maze_begin(){
             break;
         }           
     }
+    return tmpresult;
 }
 

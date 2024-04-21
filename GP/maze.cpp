@@ -243,6 +243,10 @@ void Maze::maze_init(){
     screen.draw_map(mymap.map_x,mymap.map_y,mymap.lines,mymap.mem_map);
     screen.draw_char(mywarrior.warrior_x,mywarrior.warrior_y,WARRIOR);
     generate_obs();
+	screen.draw_string(50, 1, "Press q to quit the game" );
+    screen.draw_string(50, 2, "Player: P" );
+    screen.draw_string(50, 3, "Obstable: O" );
+    screen.draw_string(50, 4, "Exist: E" );
     keyboard.begin_listening();
 }
 

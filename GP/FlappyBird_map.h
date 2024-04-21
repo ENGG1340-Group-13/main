@@ -29,7 +29,7 @@ class Map{
         vector<string> map;
     public:
         Map();
-        void move_map();
+        int move_map();
         void refresh_map();
         void move_bird(int jump);
         ScreenWin screen;

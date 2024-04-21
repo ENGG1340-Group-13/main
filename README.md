@@ -6,7 +6,7 @@
 4. [Library Usage](#Library-usage-)
 
 ## Team members
-[Guo Xinyi](https://github.com/guoxinyicindy)&ensp;&ensp;&ensp;&ensp;&ensp;()
+[Guo Xinyi](https://github.com/guoxinyicindy)&ensp;&ensp;&ensp;&ensp;&ensp;(3036128810)
 
 [Leung Ngo Ki](https://github.com/LEUNGNGOKI)&ensp;&ensp;&ensp;&ensp;(3035930826)
 

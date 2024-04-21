@@ -45,7 +45,7 @@ void ScreenWin::draw_char(int xpos,int ypos,char tmpicon){
 void ScreenWin::draw_string(int xpos,int ypos,string tmpicon){
     
     cout<<"\033["<<ypos+1<<";"<<xpos+1<<"H";
-    cout<<tmpicon;
+    cout<<tmpicon<<endl;
 } 
 
 void ScreenWin::draw_partscreen(int left,int width,int linecnt,vector<string> &tmpvec){

@@ -4,18 +4,18 @@ X     X   X   X   X     XXXXXXXXXX   X    XXXXX   X
 X     X   X   X   X           X           X       X
 X     X   X   X           X   X   XXXXXXXXX   XXXXX
 X   XXX   X   XXXXXXXXX   X   X   X               X
-X   X   O X           X   X   X       XXXXXXXXXXXXX
+X   X     X           X   X   X       XXXXXXXXXXXXX
 X   X   XXXXX     X   X   X   XXXXX               X
 X   X     X       X   X   X       X               X
 X   X     X   XXXXX   X   X       X   XXXXXXXXX   X
 X   X   XXX   X   X   X   X   X   X   X       X   X
-X   X     X   X   X   X   X O X   X   X       X   X
+X   X     X   X   X   X   X   X   X   X       X   X
 X   XXX   X   X       X   XXXXX   X   XXXXX       X
 X   X     X   X   XXXXX     X     X   X       X   X
 X   X     X   X       X   XXXXXXXXX   XXXXX   X   X
-X   XXX       X O     X   X O         X       X   X
+X   XXX       X       X   X           X       X   X
 X     X   XXXXXXXXX   X   X   XXXXX   X       X   X
-X     X   X       X   XXXXX   X O     X   XXXXX   X
+X     X   X       X   XXXXX   X       X   XXXXX   X
 XXX   X   X       X   X       XXXXXXX X   X       X
 X     X   XXXXX   XXXXXXXXXXXXX           XXXXX   X
 X                 X E                             X

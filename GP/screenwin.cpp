@@ -37,13 +37,14 @@ void ScreenWin::draw_map(int xpos,int ypos,int linecnt,vector<string> &tmpvec){
     }
 }
 /*在屏幕中指定位置画出一个字符*/
-void ScreenWin::draw_char(int xpos,int ypos,char tmpicon){
+void ScreenWin::draw_char(int xpos,int ypos,char tmpicon, string color){
+    cout<<"\033["<<color;
     cout<<"\033["<<ypos+1<<";"<<xpos+1<<"H";
     cout<<tmpicon<<endl;
+    cout<<"\033[0m"<<endl;
 } 
 
 void ScreenWin::draw_string(int xpos,int ypos,string tmpicon){
-    
     cout<<"\033["<<ypos+1<<";"<<xpos+1<<"H";
     cout<<tmpicon<<endl;
 } 
@@ -55,10 +56,47 @@ void ScreenWin::draw_partscreen(int left,int width,int linecnt,vector<string> &t
         }
 }
 
+void ScreenWin::draw_win()
+{
+    cout << "\033[2J\033[1;1H";
+    cout << "\033[32m";
+    cout <<"$       $  $$$$$  $$    $"<<endl;
+    cout <<"$   $   $    $    $ $   $"<<endl;
+    cout <<" $ $ $ $     $    $  $  $"<<endl;
+    cout <<" $ $ $ $     $    $   $ $"<<endl;
+    cout <<"  $   $    $$$$$  $    $$"<<endl;
+    cout << "\033[0m"<<endl;
+    cout<<"Press Enter to continue"<<endl;
+}
+
+void ScreenWin::draw_lose()
+{
+    cout << "\033[2J\033[1;1H";
+    cout << "\033[31m";
+    cout <<"$      $$$$$   $$$$   $$$$$"<<endl;
+    cout <<"$      $   $  $       $    "<<endl;
+    cout <<"$      $   $   $$$$   $$$$$"<<endl;
+    cout <<"$      $   $       $  $    "<<endl;
+    cout <<"$$$$$  $$$$$   $$$$   $$$$$"<<endl;
+    cout << "\033[0m"<<endl;
+    cout<<"Press Enter to continue"<<endl;
+}
+
+void ScreenWin::draw_quit()
+{
+    cout << "\033[2J\033[1;1H";
+    cout << "\033[34m";
+    cout <<" $$$    $   $   $$$   $$$$$"<<endl;
+    cout <<"$   $   $   $    $      $  "<<endl;
+    cout <<"$ $ $   $   $    $      $  "<<endl;
+    cout <<"$  $$   $   $    $      $  "<<endl;
+    cout <<" $$$$$  $$$$$   $$$     $  "<<endl;
+    cout << "\033[0m"<<endl;
+    cout<<"Press Enter to continue"<<endl;
+}
+
 void ScreenWin::EndWin()
 {
-    cout << "\033[2J\033[1;1H"<<endl;
-    cout<<"Press Enter to continue"<<endl;
     char c;
     c = getchar(); 
     while (c != '\n' && c != EOF) { 

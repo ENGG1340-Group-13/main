@@ -73,7 +73,7 @@ public:
                                    //返回值：1—移动；2—撞墙未动；3—撞障碍物牺牲；4-走出迷宫 
     int move_obstacles();//在屏幕上自动移动“障碍物”  
     void mem_clean();
-    void maze_begin();
+    int maze_begin();
 };
 
 

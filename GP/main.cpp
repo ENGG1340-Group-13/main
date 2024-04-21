@@ -18,6 +18,7 @@ int main()
 //check the validity of the player move
 void checkPosition(Position * newPosition, Level * level)
 {
+	int result=-1;
     switch (mvinch(newPosition->y, newPosition->x))
     {
         case '.':
@@ -30,7 +31,7 @@ void checkPosition(Position * newPosition, Level * level)
 	{
 			endwin();
 		    Map mymap;
-    		mymap.move_map();
+    		result=mymap.move_map();
 			initscr();
     		break;
 	}
@@ -39,7 +40,7 @@ void checkPosition(Position * newPosition, Level * level)
 			endwin();
             Maze mymaze;
 	        mymaze.maze_init();
-	        mymaze.maze_begin();
+	        result=mymaze.maze_begin();
 			initscr();
             break;
         }

@@ -234,7 +234,7 @@ int mini3(){
     }
     if (levels == "1") {
         f_L1(win);
-    } elif (levels == "2") {
+    } else if (levels == "2") {
         f_L2(win);
     } else {
         return result;

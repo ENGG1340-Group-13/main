@@ -207,7 +207,7 @@ void f_L2(bool &win) {
 int mini3(){
     cout << "\033[2J\033[1;1H";
     int level;
-    int result;
+    int result = 2;
     string levels;
 
     cout << "Welcome to the THIRD layer of the immune system -- the SPECIFIC IMMUNE SYSTEM!" << endl;
@@ -226,7 +226,7 @@ int mini3(){
             continue;
         }
         // Check if the input is valid
-        if (levels == "1" || levels == "2") {
+        if (levels == "1" || levels == "2" || levels == "q") {
             break;
         } else {
             cout << "Invalid input. Please enter a valid level number." << endl;
@@ -234,9 +234,11 @@ int mini3(){
     }
     if (levels == "1") {
         f_L1(win);
-    } else {
+    } elif (levels == "2") {
         f_L2(win);
-    } 
+    } else {
+        return result;
+    }
     if (win) {
         result = 1;
         cout << "\033[2J\033[1;1H";

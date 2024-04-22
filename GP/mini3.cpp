@@ -204,9 +204,10 @@ void f_L2(bool &win) {
 }
 
 //This is the main funtion showing rules and judging the final result
-void mini3(){
+int mini3(){
     cout << "\033[2J\033[1;1H";
     int level;
+    int result;
     string levels;
 
     cout << "Welcome to the THIRD layer of the immune system -- the SPECIFIC IMMUNE SYSTEM!" << endl;
@@ -237,13 +238,17 @@ void mini3(){
         f_L2(win);
     } 
     if (win) {
+        result = 1;
         cout << "\033[2J\033[1;1H";
         cout << "CONGRATULATIONS!!! You have passed all the cases!" << endl;
         sleep(3);
+        return result;
     }else{
+        result = 0;
         cout << "\033[2J\033[1;1H";
         cout << red << "Aho! You failed!" << clre << endl;
         sleep(2);
+        return result;
     }
     cout << "\033[2J\033[1;1H"<<endl;
 }

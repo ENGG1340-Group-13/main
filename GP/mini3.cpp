@@ -216,7 +216,6 @@ void mini3(){
     cout << frag;
     /*cout << "Reminds that if you fail to pass one case, you will immediatedly quit of the game, and you can't get supplement of your blood flow." << endl;
     cout << "However, if you successfully pass all the cases in Level1, your blood flow and defense level will both increase 25%. If you pass all the cases in Level2, your blood flow and defense level will reach to 100%!!!" << endl;*/
-    sleep(1);
     cout << "Please select the level you want to challenge first: (1 for Level 1, 2 for Level 2)" << endl;
     while (true) {
         getline(cin, levels);
@@ -225,24 +224,26 @@ void mini3(){
             cout << "Invalid input. Please enter a valid level number." << endl;
             continue;
         }
-        // Convert the input to an integer
-        level = stoi(levels);
         // Check if the input is valid
-        if (level == 1 || level == 2) {
+        if (levels == "1" || levels == "2") {
             break;
         } else {
             cout << "Invalid input. Please enter a valid level number." << endl;
         }
     }
-    if (level == 1) {
+    if (levels == "1") {
         f_L1(win);
     } else {
         f_L2(win);
     } 
     if (win) {
+        cout << "\033[2J\033[1;1H";
         cout << "CONGRATULATIONS!!! You have passed all the cases!" << endl;
+        sleep(3);
     }else{
+        cout << "\033[2J\033[1;1H";
         cout << red << "Aho! You failed!" << clre << endl;
+        sleep(2);
     }
-    cout << "\033[2J\033[1;1H";
+    cout << "\033[2J\033[1;1H"<<endl;
 }

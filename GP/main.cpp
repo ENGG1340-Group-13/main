@@ -19,6 +19,8 @@ int main()
 void checkPosition(Position * newPosition, Level * level)
 {
 	int result=-1;
+    Map mymap;
+    Maze mymaze;
     switch (mvinch(newPosition->y, newPosition->x))
     {
         case '.':
@@ -28,28 +30,38 @@ void checkPosition(Position * newPosition, Level * level)
             break;
 
         case 'X':
-	{
-			endwin();
-		    Map mymap;
-    		result=mymap.move_map();
-			initscr();
+	    	endwin();
+		 result=mymap.move_map();
+		initscr();
     		break;
-	}
+	
         case 'G':
-        {
-			endwin();
-            Maze mymaze;
+        	endwin();
 	        mymaze.maze_init();
 	        result=mymaze.maze_begin();
-			initscr();
+		initscr();
             break;
-        }
+        
         case 'T':
-			endwin();
-            mini3();
-			initscr();
+		endwin();
+            result=mini3();
+		initscr();
 	        break;
         default:
+            break;
+    }
+    switch(result)
+    {
+        case 0:
+            level->player->health -= 2;
+            level->player->attack -= 1;
+            break;
+        case 1:
+            level->player->attack += 1;
+            level->player->exp += 5; 
+            break;
+        case 2:
+            level->player->exp += 1; 
             break;
     }
 }

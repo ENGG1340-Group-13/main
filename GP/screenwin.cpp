@@ -2,17 +2,18 @@
 
 using namespace std;
 
-/*获取控制台最大坐标，并将窗口最大化显示*/
+//get the maximum range of the window.
 void maxconsolewindow(int &tmpwidth,int &tmpheight){   
     cout<<"\033[9;1t";
 }
 
+//set the status of the window
 ScreenWin::ScreenWin(){
     screen_width=0;
     screen_height=0;
 } 
 
-/*初始化控制台屏幕*/ 
+//initialize the screen output window
 void ScreenWin::init(){
     
      // 获取当前终端设置
@@ -29,14 +30,15 @@ void ScreenWin::init(){
     
 }
 
-/*在屏幕中画出地图*/ 
+//draw the maps of the games.
 void ScreenWin::draw_map(int xpos,int ypos,int linecnt,vector<string> &tmpvec){
     cout << "\033[2J\033[1;1H";//将起始光标设成1，1
     for (int i=0;i<linecnt;i++){
         cout<<tmpvec[i]<<endl;
     }
 }
-/*在屏幕中指定位置画出一个字符*/
+
+//draw a specific character on the screen.
 void ScreenWin::draw_char(int xpos,int ypos,char tmpicon, string color){
     cout<<"\033["<<color;
     cout<<"\033["<<ypos+1<<";"<<xpos+1<<"H";
@@ -44,11 +46,13 @@ void ScreenWin::draw_char(int xpos,int ypos,char tmpicon, string color){
     cout<<"\033[0m"<<endl;
 } 
 
+//draw a string on the screen.
 void ScreenWin::draw_string(int xpos,int ypos,string tmpicon){
     cout<<"\033["<<ypos+1<<";"<<xpos+1<<"H";
     cout<<tmpicon<<endl;
 } 
 
+//draw part of the map on the screen.
 void ScreenWin::draw_partscreen(int left,int width,int linecnt,vector<string> &tmpvec){
     cout << "\033[2J\033[1;1H";//将起始光标设成1，1
     for (int y = 0; y < linecnt; y++){
@@ -56,6 +60,7 @@ void ScreenWin::draw_partscreen(int left,int width,int linecnt,vector<string> &t
         }
 }
 
+//draw the winning image on the screen.
 void ScreenWin::draw_win()
 {
     cout << "\033[2J\033[1;1H";
@@ -69,6 +74,7 @@ void ScreenWin::draw_win()
     cout<<"Press Enter to continue"<<endl;
 }
 
+//draw the losing image on the screen.
 void ScreenWin::draw_lose()
 {
     cout << "\033[2J\033[1;1H";
@@ -82,6 +88,7 @@ void ScreenWin::draw_lose()
     cout<<"Press Enter to continue"<<endl;
 }
 
+//draw the quit image on the screen.
 void ScreenWin::draw_quit()
 {
     cout << "\033[2J\033[1;1H";
@@ -95,6 +102,7 @@ void ScreenWin::draw_quit()
     cout<<"Press Enter to continue"<<endl;
 }
 
+//stop the screen output.
 void ScreenWin::EndWin()
 {
     char c;

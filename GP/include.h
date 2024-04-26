@@ -99,6 +99,7 @@ void pathfindingRandom(Position * position);
 Monster * getMonsterAt(Position * position, Monster ** monsters);
 void killMonster(Monster * monster);
 void drawMonster(Monster * monster);
+Monster * getMonsterAt(Position * position, Monster ** monsters);
 
 /* player functions */
 Player * playerSetUp();

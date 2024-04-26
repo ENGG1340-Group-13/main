@@ -5,7 +5,7 @@
 
 Game game;
 
-
+//this is the main function 
 int main()
 {
 	screenSetUp();
@@ -15,10 +15,10 @@ int main()
 	return 0;
 }
 
-//check the validity of the player move
+//check the  player move and react accordingly ->new position, level map -> NULL
 void checkPosition(Position * newPosition, Level * level)
 {
-	int result=-1;
+    int result=-1;
     Map mymap;
     Maze mymaze;
     switch (mvinch(newPosition->y, newPosition->x))
@@ -31,21 +31,21 @@ void checkPosition(Position * newPosition, Level * level)
 
         case 'X':
 	    	endwin();
-		 result=mymap.move_map();
-		initscr();
+		    result=mymap.move_map();
+			initscr();
     		break;
 	
         case 'G':
         	endwin();
 	        mymaze.maze_init();
 	        result=mymaze.maze_begin();
-		initscr();
+			initscr();
             break;
         
         case 'T':
-		endwin();
+			endwin();
             result=mini3();
-		initscr();
+			initscr();
 	        break;
         default:
             break;
@@ -59,12 +59,33 @@ void checkPosition(Position * newPosition, Level * level)
         case 1:
             level->player->attack += 1;
             level->player->exp += 5; 
+            killMonster(getMonsterAt(newPosition, level->monsters));
             break;
         case 2:
             level->player->exp += 1; 
             break;
     }
 }
+
+//get the monster at a certain position ->position, list of all monsters ->pointer of the target monster
+Monster * getMonsterAt(Position * position, Monster ** monsters)
+{
+    int x;
+    for (x = 0; x < 3; x++)
+    {
+        if ((position->y == monsters[x]->position->y) && (position->x == monsters[x]->position->x))
+            return monsters[x];
+    }
+
+    return NULL;
+}
+
+//kill the monster ->pointer of the target monster -> NULL
+void killMonster(Monster * monster)
+{
+    monster->alive = 0;
+}
+
 
 // set up screen parameters
 void screenSetUp()
@@ -74,14 +95,6 @@ void screenSetUp()
 	noecho();
 	keypad(stdscr, true);
 	refresh();
-
-    // start_color();
-    // init_pair(0, COLOR_RED, COLOR_WHITE);
-    // init_pair(1, COLOR_GREEN, COLOR_WHITE);
-    // init_pair(2, COLOR_YELLOW, COLOR_WHITE);
-    // init_pair(3, COLOR_BLUE, COLOR_WHITE);
-    // init_pair(4, COLOR_CYAN, COLOR_WHITE);
-    // init_pair(5, COLOR_WHITE, COLOR_WHITE);
 
     for (int i = 0; i < 30; i++)
     {
@@ -128,20 +141,20 @@ void print_intro()
 		i++;
 	}
 	napms(1000);
-	mvwprintw(introwin, i, 25, "Please press ENTER to return to menu...");
+	mvwprintw(introwin, i, 25, "Please press ENTER to continue...");
 	wrefresh(introwin);
     fin.close();
 	
 	int choice = '\0';
 	while (true)
 	{
-		choice = wgetch(introwin);
-		if (choice == 10)
-		{
+	choice = wgetch(introwin);
+	if (choice == 10)
+	{
             clear();
             refresh();
-			return;
-		}	
+	    return;
+	}	
     }
 }
 
@@ -153,22 +166,22 @@ void menuLoop()
 
 	while(true)
 	{
-		switch(choice)
-		{
-			case 0: // print introduction
-				print_intro();
-				break;
-			case 1: // start a new game
-				game.currentLevel = -1;
+	switch(choice)
+	{
+	case 0: // print introduction
+		print_intro();
+		break;
+	case 1: // start a new game
+		game.currentLevel = -1;
                 gameLoop(&game);
-				break;
-			case 2: //continue the current game
+		break;
+	case 2: //continue the current game
                 gameLoop(&game);
                 break;
-            case 3: // end game
-				endGame();
+        case 3: // end game
+		endGame();
                 return;
-            case 4:
+        case 4:
                 gameLoop(&game);
                 break;
 		}
@@ -176,7 +189,7 @@ void menuLoop()
 	}
 }
 
-//main gameloop
+//main gameloop ->pointer of the current game
 void gameLoop(Game * game)
 {
     clear();
@@ -201,17 +214,36 @@ void gameLoop(Game * game)
 
 	while (ch != 'q')
 	{
-		newPosition = handleInput(ch, level->player);
-		checkPosition(newPosition, level);
-		moveMonsters(level);
-		clear();
-		drawLevel(level);
-		printGameHub(level);
-		if (level->player->health <= 0)
-		{
-			game->currentLevel = 0;
-			return;
+	newPosition = handleInput(ch, level->player);
+	checkPosition(newPosition, level);
+	moveMonsters(level);
+	clear();
+	drawLevel(level);
+	printGameHub(level);
+	if (level->player->health <= 0)
+	{
+	    game->currentLevel = 0;
+	    clear();
+	    mvprintw(5,40, "Congratulations! YOU WIN!!!");
+	    mvprintw(7,40, "Press Enter to continue ...");
+	    refresh();
+	    getch();
+	    clear();
+	    refresh();
+	    return;
 		}
+        if (level->monsters[0]->alive == 0 && level->monsters[1]->alive == 0 && level->monsters[2]->alive == 0)
+        {
+            clear();
+            mvprintw(5,40, "Congratulations! YOU WIN!!!");
+            mvprintw(7,40, "Press Enter to continue ...");
+            refresh();
+            getch();
+            clear();
+            refresh();
+            return;
+        }
+        
 		ch = getch();
 	}
     clear();
@@ -271,29 +303,24 @@ int mainMenu()
 //function to end game
 void endGame()
 {
-    // start_color();
-    // init_pair(0, COLOR_RED, COLOR_WHITE);
-    // init_pair(1, COLOR_GREEN, COLOR_WHITE);
-    // init_pair(2, COLOR_YELLOW, COLOR_WHITE);
-    // init_pair(3, COLOR_BLUE, COLOR_WHITE);
-    // init_pair(4, COLOR_CYAN, COLOR_WHITE);
-
     clear();
     napms(500);
     print_end_page();
     return;
 }
 
-// print the game hub
+// print the game hub ->pointer of the current level
 void printGameHub(Level * level)
 {
     mvprintw(1, 105, "Level: %d", level->level);
     mvprintw(3, 105, "Health: %d(%d)", level->player->health, level->player->maxHealth);
     mvprintw(5, 105, "Attack: %d", level->player->attack);
     mvprintw(7, 105,"Exp: %d", level->player->exp);
+    mvprintw(11, 105,"Control Player Move:");
+    mvprintw(13, 105,"Press ASDW keys for left,down,right,up.");
 }
 
-//create the profile of the level, including rooms, players, monsters, and tiles
+//create the profile of the level, including rooms, players, monsters, and tiles ->the index of level
 Level * createLevel(int level)
 {
 	Level * newLevel;
@@ -330,7 +357,7 @@ Room ** roomsSetUp()
 	return rooms;
 }
 
-//ramdomly generate rooms, including position, size, doors, corridors
+//ramdomly generate rooms, including position, size, doors, corridors ->number of rooms, number of doors in each room
 Room * createRoom(int grid, int numberOfDoors)
 {
     int i;
@@ -382,7 +409,7 @@ Room * createRoom(int grid, int numberOfDoors)
     return newRoom;
 }
 
-// draw rooms on the screen
+// draw rooms on the screen ->pointer of target room
 int drawRoom(Room * room)
 {
     int x;
@@ -547,13 +574,13 @@ void drawLevel(Level * level)
 
 	drawPlayer(level->player);
 }
-
+//draw player
 void drawPlayer(Player * player)
 {
     mvprintw(player->position->y, player->position->x, "@");
     move(player->position->y, player->position->x);
 }
-
+//draw monster
 void drawMonster(Monster * monster)
 {
     if (monster->alive)
@@ -561,7 +588,7 @@ void drawMonster(Monster * monster)
         mvprintw(monster->position->y, monster->position->x, monster->string);
     }
 }
-
+//handle user input
 Position * handleInput(int input, Player * player)
 {
     Position * newPosition;
@@ -666,14 +693,14 @@ void pathfindingRandom(Position * position)
 
     }
 }
-
+//utils for the PathFinding function
 void addPositionYX(int ** frontier, int frontierCount, int y, int x)
 {
     frontier[frontierCount][0] = y;
     frontier[frontierCount][1] = x;
 }
 
-
+//utils for the PathFinding function
 int check_Position(int y, int x)
 {
     char temp = mvinch(y, x) & A_CHARTEXT;
@@ -683,7 +710,7 @@ int check_Position(int y, int x)
     else
         return 1;
 }
-
+//utils for the PathFinding function
 int addNeighbors(int ** frontier, int frontierCount, int *** cameFrom, int y, int x)
 {
     // north
@@ -726,7 +753,7 @@ int addNeighbors(int ** frontier, int frontierCount, int *** cameFrom, int y, in
 
 }
 
-//a util function to find the shortest pathway from one point to another
+// find the shortest pathway from one point to another, used to connect doors 
 void pathFind(Position * start, Position * end)
 {
     int i, j;
@@ -789,7 +816,7 @@ void pathFind(Position * start, Position * end)
         mvprintw(y, x, "#");
     }
 }
-
+//move player
 void playerMove(Position * newPosition, Player * player, char ** level)
 {
     player->position->y = newPosition->y;
@@ -898,6 +925,5 @@ void print_start_page()
    mvprintw(20,0,":::Vv:::::.,..:");
    mvprintw(21,0,"::::<::::{{::::}:{{::::{{::::");
    refresh();
-    napms(1200);
-   
+    napms(1200); 
 }

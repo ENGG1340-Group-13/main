@@ -2,7 +2,7 @@
 
 using namespace std;
 
-//“障碍物”类的构造函数 
+//the function that creates the obstacles.
 Mem_Obstacle::Mem_Obstacle(){
     this->obstacle_x=0;
     this->obstacle_y=0;
@@ -10,6 +10,7 @@ Mem_Obstacle::Mem_Obstacle(){
     this->direct_y=2;
 }
 
+//define the original status of the map by the class "Maze"
 Maze::Maze(){
     mymap.map_x=MAP_POS_X;
     mymap.map_y=MAP_POS_Y;
@@ -21,7 +22,7 @@ Maze::Maze(){
     myexit.exit_y=0;
 }
 
-//随机生成障碍物
+//randomly generate the obstacles
 void Maze::generate_obs(){
     srand(time(NULL));
     int ObstacleCount = 0;
@@ -41,11 +42,11 @@ void Maze::generate_obs(){
     }
 }
  
-/* 从文件读出地图数据*/
+//read the map from the files
 void Maze::mapinitial(){
     ifstream infile;
     string line;
-    int count=0;//文件读入行的计数 
+    int count=0;
     int tmppos=-1;  
     int file = rand()%2;
     if(file ==0)
@@ -56,170 +57,172 @@ void Maze::mapinitial(){
         cout << "fail" << endl;
         return;
     }
-    //读取文件并拷贝进“内存地图”中 
+    //read the lines of the map and store them to the map.
     while ( getline (infile,line) ){
       mymap.mem_map.push_back(line);
       mymap.map_width=std::max(mymap.map_width,(int)line.length());         
-      //检查当前行的字符串中是否有代表warrior 的字符，如果有则初始化对象 
       tmppos=line.find(WARRIOR);      
       if(tmppos>=0){        
         mywarrior.warrior_x=mymap.map_x+tmppos;
         mywarrior.warrior_y=mymap.map_y+count; 
       }
-      //检查当前行的字符串中是否有代表“出口” 的字符，如果有则初始化对象 
       tmppos=-1;
       tmppos=line.find(MAP_EXIT);      
       if(tmppos>=0){        
         myexit.exit_x=mymap.map_x+tmppos;
         myexit.exit_y=mymap.map_y+count;            
       }
-      //检查当前行的字符串中是否有代表obstacle 的字符，如果有则初始化对象并放入vector 容器中
 	  count++;
 }     
     infile.close();
-    //地图行数赋值
     this->mymap.lines=count;
 }
 
-//更新内存子图上指定位置的字符，在控制台屏幕上更新指定位置的字符 
+//the function that refresh the map.
+//it outputs the characters on the screen.
 void Maze::updatechar(int xpos,int ypos,char tmpicon, string tmpcolor){
     mymap.mem_map[ypos-MAP_POS_Y][xpos-MAP_POS_X]=tmpicon; 
     screen.draw_char(xpos,ypos,tmpicon, tmpcolor);    
 }
 
+//the main function that moves the player around with the command of users.
+//It gets the key inputs from the users.
+//It outputs the map, the player on the screen.
 int Maze::move_warrior(int keyvalue){
     int x=mywarrior.warrior_x;
     int y=mywarrior.warrior_y;
     int mx=x-MAP_POS_X;
     int my=y-MAP_POS_Y;
     int tmpresult=0;
-    //判断沿箭头的方向是否可移动
+    //check if the move is valid with all the moving directions
     switch(keyvalue){
         case KEY_up:
-            if(mymap.mem_map[my-1][mx]==' '){//移动方向的下一步是空格
+            if(mymap.mem_map[my-1][mx]==' '){
                 updatechar(x,y,' ', DEFAULT_COLOR); 
                 y--;
                 updatechar(x,y,WARRIOR, BLUE); 
-                tmpresult=1;//成功移动 
-            }else if(mymap.mem_map[my-1][mx]==MAP_CHAR){//移动方向的下一步是墙
-                tmpresult=2;//撞墙不动 
-            }else if(mymap.mem_map[my-1][mx]==OBSTACLE){//移动方向的下一步是障碍物
+                tmpresult=1;
+            }else if(mymap.mem_map[my-1][mx]==MAP_CHAR){
+                tmpresult=2;
+            }else if(mymap.mem_map[my-1][mx]==OBSTACLE){
                 updatechar(x,y,' ', DEFAULT_COLOR); 
                 y--;
                 updatechar(x,y,WARRIOR_DIE, RED);            
-                tmpresult=3;//牺牲  
-            }else if(mymap.mem_map[my-1][mx]==MAP_EXIT){//移动方向的下一步是出口
+                tmpresult=3; 
+            }else if(mymap.mem_map[my-1][mx]==MAP_EXIT){
                 updatechar(x,y,' ', DEFAULT_COLOR); 
                 y--;
                 updatechar(x,y,WARRIOR_OUT, GREEN);            
-                tmpresult=4;//走出迷宫 
+                tmpresult=4;
             }               
             break;
         case KEY_down:
-            if(mymap.mem_map[my+1][mx]==' '){//移动方向的下一步是空格
+            if(mymap.mem_map[my+1][mx]==' '){
                 updatechar(x,y,' ', DEFAULT_COLOR); 
                 y++;
                 updatechar(x,y,WARRIOR, BLUE); 
-                tmpresult=1;//成功移动 
-            }else if(mymap.mem_map[my+1][mx]==MAP_CHAR){//移动方向的下一步是墙
-                tmpresult=2;//撞墙不动 
-            }else if(mymap.mem_map[my+1][mx]==OBSTACLE){//移动方向的下一步是障碍物
+                tmpresult=1;
+            }else if(mymap.mem_map[my+1][mx]==MAP_CHAR){
+                tmpresult=2;
+            }else if(mymap.mem_map[my+1][mx]==OBSTACLE){
                 updatechar(x,y,' ', DEFAULT_COLOR); 
                 y++;
                 updatechar(x,y,WARRIOR_DIE, RED);            
-                tmpresult=3;//牺牲  
-            }else if(mymap.mem_map[my+1][mx]==MAP_EXIT){//移动方向的下一步是出口
+                tmpresult=3;  
+            }else if(mymap.mem_map[my+1][mx]==MAP_EXIT){
                 updatechar(x,y,' ', DEFAULT_COLOR); 
                 y++;
                 updatechar(x,y,WARRIOR_OUT, GREEN);            
-                tmpresult=4;//走出迷宫 
+                tmpresult=4;
             }
             break;
         case KEY_left:
-            if(mymap.mem_map[my][mx-1]==' '){//移动方向的下一步是空格
+            if(mymap.mem_map[my][mx-1]==' '){
                 updatechar(x,y,' ', DEFAULT_COLOR); 
                 x--;
                 updatechar(x,y,WARRIOR, BLUE); 
-                tmpresult=1;//成功移动 
-            }else if(mymap.mem_map[my][mx-1]==MAP_CHAR){//移动方向的下一步是墙
-                tmpresult=2;//撞墙不动 
-            }else if(mymap.mem_map[my][mx-1]==OBSTACLE){//移动方向的下一步是障碍物
+                tmpresult=1;
+            }else if(mymap.mem_map[my][mx-1]==MAP_CHAR){
+                tmpresult=2;
+            }else if(mymap.mem_map[my][mx-1]==OBSTACLE){
                 updatechar(x,y,' ', DEFAULT_COLOR); 
                 x--;
                 updatechar(x,y,WARRIOR_DIE, RED);            
-                tmpresult=3;//牺牲  
-            }else if(mymap.mem_map[my][mx-1]==MAP_EXIT){//移动方向的下一步是出口
+                tmpresult=3;
+            }else if(mymap.mem_map[my][mx-1]==MAP_EXIT){
                 updatechar(x,y,' ', DEFAULT_COLOR); 
                 x--;
                 updatechar(x,y,WARRIOR_OUT, GREEN);            
-                tmpresult=4;//走出迷宫 
+                tmpresult=4;
             }
             break;
         case KEY_right:
-            if(mymap.mem_map[my][mx+1]==' '){//移动方向的下一步是空格
+            if(mymap.mem_map[my][mx+1]==' '){
                 updatechar(x,y,' ', DEFAULT_COLOR); 
                 x++;
                 updatechar(x,y,WARRIOR, BLUE); 
-                tmpresult=1;//成功移动 
-            }else if(mymap.mem_map[my][mx+1]==MAP_CHAR){//移动方向的下一步是墙
-                tmpresult=2;//撞墙不动 
-            }else if(mymap.mem_map[my][mx+1]==OBSTACLE){//移动方向的下一步是障碍物
+                tmpresult=1;
+            }else if(mymap.mem_map[my][mx+1]==MAP_CHAR){
+                tmpresult=2;
+            }else if(mymap.mem_map[my][mx+1]==OBSTACLE){
                 updatechar(x,y,' ', DEFAULT_COLOR); 
                 x++;
                 updatechar(x,y,WARRIOR_DIE, RED);            
-                tmpresult=3;//牺牲  
-            }else if(mymap.mem_map[my][mx+1]==MAP_EXIT){//移动方向的下一步是出口
+                tmpresult=3;
+            }else if(mymap.mem_map[my][mx+1]==MAP_EXIT){
                 updatechar(x,y,' ', DEFAULT_COLOR); 
                 x++;
                 updatechar(x,y,WARRIOR_OUT, GREEN);            
-                tmpresult=4;//走出迷宫 
+                tmpresult=4;
             } 
             break;
-    }            
-    //记录勇士的新坐标并返回结果 
+    }     
+	
+    //record the status of the player
     mywarrior.warrior_x=x;
     mywarrior.warrior_y=y;
     return tmpresult;       
 }
 
+//the function that moves the obstacles
+//it outputs the obstacles on the screen
 int Maze::move_obstacles(){ 
     int x,y,mx,my,x_direction,y_direction;
-    int a[4]={0,1,0,-1};//移动方向数组 
+    int a[4]={0,1,0,-1};
     for(int i=0;i<myobstacles.size();i++ ){
         x=myobstacles[i].obstacle_x;
         y=myobstacles[i].obstacle_y;
         mx=x-MAP_POS_X;
         my=y-MAP_POS_Y;
-        //设置在移动方向数组中的坐标       
         x_direction=myobstacles[i].direct_x;
         y_direction=myobstacles[i].direct_y;
         int count = 0;
         while(count<20){
             int tmp=0;
             switch(mymap.mem_map[my+a[y_direction]][mx+a[x_direction]]){
-                case ' '://前方是空格，可以走 
+                case ' ':
                     updatechar(x,y,' ', DEFAULT_COLOR); 
                     x=x+a[x_direction];
                     y=y+a[y_direction];
                     updatechar(x,y,OBSTACLE, RED); 
-                    tmp=1;//成功移动   
+                    tmp=1;
                     count ++;                 
                     break; 
-                case WARRIOR://前方是勇士，勇士被撞死，游戏结束 
+                case WARRIOR:
                     updatechar(x,y,' ', DEFAULT_COLOR); 
                     x=x+a[x_direction];
                     y=y+a[y_direction];
                     updatechar(x,y,WARRIOR_DIE, RED);
-                    tmp=4;//勇士被撞死，游戏结束
+                    tmp=4;
                     count++;
                     break;                                      
-                case MAP_CHAR://前方是墙，不能走 
+                case MAP_CHAR:
                     count++;
                     break;              
-                case OBSTACLE://前方是障碍物，不能走 
+                case OBSTACLE:
                     count++;
                     break;
-                case MAP_EXIT://前方是出口，不能走 
+                case MAP_EXIT:
                     count++;
                     break;          
             } 
@@ -227,7 +230,6 @@ int Maze::move_obstacles(){
                 break;
             if(tmp==4)
                 return tmp; 
-            //改变在移动方向数组中的坐标 
             x_direction=rand()%4;
             y_direction=(x_direction+1)%4;
         }
@@ -239,11 +241,9 @@ int Maze::move_obstacles(){
     return 0;
 }     
 
-/* 初始化"内存屏幕"*/
+//initialize the screen and the map.
 void Maze::maze_init(){
-    //初始化控制台屏幕 
     screen.init();  
-    //读文件获取地图，并画在屏幕上 
     mapinitial();
     screen.draw_map(mymap.map_x,mymap.map_y,mymap.lines,mymap.mem_map);
     screen.draw_char(mywarrior.warrior_x,mywarrior.warrior_y,WARRIOR, BLUE);
@@ -256,14 +256,14 @@ void Maze::maze_init(){
     keyboard.begin_listening();
 }
 
-/* 游戏的主循环函数*/
+//the main function for this mini game. It get key input from the users and move the map and player correspondingly. It also generate the obstacles and check if the player reaches the exit.
 int Maze::maze_begin(){
     int quit=0;
     int tmpresult = -1;
     int keyinput=0;
-    int tmpspeed=SPEED;//设置障碍物移动速度的控制值 
+    int tmpspeed=SPEED;
+    //remain running unless reaches the breakpoints (winning or losing)
     while(true){
-        //根据键盘输入移动“勇士”或退出读键盘的循环 
         keyinput=keyboard.read_key();
         if (keyinput==KEY_up|keyinput==KEY_down|keyinput==KEY_left|keyinput==KEY_right){
             int tmp=move_warrior(keyinput);
@@ -280,16 +280,14 @@ int Maze::maze_begin(){
             tmpresult=2;
             quit=1;
         }
-        //如果障碍物速度的控制值降到 0，就移动一次所有的障碍物 
         if(--tmpspeed==0){
             int tmp=move_obstacles();           
-            tmpspeed=SPEED;//重新设置障碍物速度控制值
+            tmpspeed=SPEED;
             if(tmp==4){
                 tmpresult=0;
                 quit=1;
             }
         }          
-        //如果是‘ESC’键，就结束键盘监听的守护线程，并退出循环 
         if(quit){
             keyboard.stop_listening();
             if (tmpresult == 0)

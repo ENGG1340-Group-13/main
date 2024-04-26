@@ -9,6 +9,7 @@
 
 using namespace std;
 
+//define the class of ScreenWin, with the status of the window and the functions that handles screen output.
 class ScreenWin
 {
 private:

@@ -15,6 +15,7 @@ using namespace std;
 #define speed_bird 125000000
 #define BIRD "///o>"
 
+//create the class of Bird, storing the x and y positions and the speed of the bird
 class Bird{
     public:
         int xpos;
@@ -24,6 +25,7 @@ class Bird{
         Bird();
 };
 
+//create the class of Map, storing the obstacles and declaring the functions of the game
 class Map{
     public:
         vector<string> map;

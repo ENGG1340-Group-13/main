@@ -23,6 +23,7 @@ just type "make main" and then "make start" as your command and you can start!!
 🌟 Or simply run the code in the Github makerspace (HIGHLY RECOMMENDED!!!!)
 
 ### Demo
+https://www.youtube.com/watch?v=hCNlq7Rcx6M
 [![asciicast]()
 
 ### Characters

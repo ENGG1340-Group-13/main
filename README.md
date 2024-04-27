@@ -55,7 +55,7 @@ Now, You can get started!!
 
 ## Features Emplemented ✅
 ### Generation of random game sets or events
-1. We have random size of romms and random connections between the three rooms in the main map.
+1. We have random size of rooms and random connections between the three rooms in the main map.
 2. We have choose random cylinders appear in the end in minigame1.
 3. We have random monsters and moving paths generated in minigame2.
 

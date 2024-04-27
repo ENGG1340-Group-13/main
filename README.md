@@ -24,7 +24,7 @@ just type "make main" and then "make start" as your command and you can start!!
 
 ### Demo
 https://www.youtube.com/watch?v=hCNlq7Rcx6M
-[![asciicast]()
+
 
 ### Characters
 player: @  

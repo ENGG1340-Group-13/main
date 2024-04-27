@@ -18,9 +18,9 @@
 
 ## How to play
 ### Get started
-🌟 REMEMBER to run in the terminal!!!
-just type "make main" and then "make start" as your command and you can start!!
-🌟 Or simply run the code in the Github makerspace (HIGHLY RECOMMENDED!!!!)
+🌟 You can simply run the code in the Github codespace (HIGHLY RECOMMENDED!!!!)
+Just create a codespace, switch to the "GP" folder, type "make main" and then "make start" as your command and you can start!!
+🌟 Or you can run the game in the terminal!
 
 ### Demo
 https://www.youtube.com/watch?v=hCNlq7Rcx6M

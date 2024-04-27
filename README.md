@@ -18,8 +18,9 @@
 
 ## How to play
 ### Get started
-🌟 REMEMBER to run in the terminal or simply run the code in the Github makerspace (HIGHLY RECOMMENDED!!!!)
+🌟 REMEMBER to run in the terminal!!!
 just type "make main" and then "make start" as your command and you can start!!
+🌟 Or simply run the code in the Github makerspace (HIGHLY RECOMMENDED!!!!)
 
 ### Demo
 [![asciicast]()
